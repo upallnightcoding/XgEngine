@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{E74763B5-2CF7-48A2-B6E0-A1A7145E7A9D}</ProjectGuid>
+    <RootNamespace>XgEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)resources\stb\include;$(SolutionDir)resources\GLM\include;$(SolutionDir)resources\GLFW\include;$(SolutionDir)resources\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)resources\GLFW\lib-vc2017;$(SolutionDir)resources\GLEW\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)resources\stb\include;$(SolutionDir)resources\GLM\include;$(SolutionDir)resources\GLFW\include;$(SolutionDir)resources\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)resources\GLFW\lib-vc2017;$(SolutionDir)resources\GLEW\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Xg.h" />
+    <ClInclude Include="src\XgConstants.h" />
+    <ClInclude Include="src\XgEngine.h" />
+    <ClInclude Include="src\XgObjectInfo.h" />
+    <ClInclude Include="src\XgRender.h" />
+    <ClInclude Include="src\XgVertex.h" />
+    <ClInclude Include="src\XgWindow.h" />
+    <ClInclude Include="src\XglProgram.h" />
+    <ClInclude Include="src\XgShader.h" />
+    <ClInclude Include="src\XgData.h" />
+    <ClInclude Include="src\XgObject.h" />
+    <ClInclude Include="src\XgScene.h" />
+    <ClInclude Include="src\XgTransform.h" />
+    <ClInclude Include="src\XgObjectFactory.h" />
+    <ClInclude Include="src\XgAction.h" />
+    <ClInclude Include="src\XgActionGlow.h" />
+    <ClInclude Include="src\XgBehavior.h" />
+    <ClInclude Include="src\XgActionSpin.h" />
+    <ClInclude Include="src\XgConstant.h" />
+    <ClInclude Include="src\XgTexture.h" />
+    <ClInclude Include="src\XgCamera.h" />
+    <ClInclude Include="src\XgTracker.h" />
+    <ClInclude Include="src\XgTrackerCircle.h" />
+    <ClInclude Include="src\XgTrackerPosition.h" />
+    <ClInclude Include="src\XgTrackerWalkAround.h" />
+    <ClInclude Include="src\XgKeyboardEvent.h" />
+    <ClInclude Include="src\XgLight.h" />
+    <ClInclude Include="src\XgRail.h" />
+    <ClInclude Include="src\XgRailTrack.h" />
+    <ClInclude Include="src\XgActionRoll.h" />
+    <ClInclude Include="src\XgFsm.h" />
+    <ClInclude Include="src\XgState.h" />
+    <ClInclude Include="src\XgObjectTerrain.h" />
+    <ClInclude Include="src\XgRailPosition.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\XgEngine.cpp" />
+    <ClCompile Include="src\XgRender.cpp" />
+    <ClCompile Include="src\XgWindow.cpp" />
+    <ClCompile Include="src\XgProgram.cpp" />
+    <ClCompile Include="src\XgShader.cpp" />
+    <ClCompile Include="src\XgData.cpp" />
+    <ClCompile Include="src\XgObject.cpp" />
+    <ClCompile Include="src\XgScene.cpp" />
+    <ClCompile Include="src\XgTransform.cpp" />
+    <ClCompile Include="src\XgObjectFactory.cpp" />
+    <ClCompile Include="src\XgAction.cpp" />
+    <ClCompile Include="src\XgActionGlow.cpp" />
+    <ClCompile Include="src\XgBehavior.cpp" />
+    <ClCompile Include="src\XgActionSpin.cpp" />
+    <ClCompile Include="src\XgConstant.cpp" />
+    <ClCompile Include="src\XgTexture.cpp" />
+    <ClCompile Include="src\XgCamera.cpp" />
+    <ClCompile Include="src\XgTracker.cpp" />
+    <ClCompile Include="src\XgTrackerCircle.cpp" />
+    <ClCompile Include="src\XgTrackerPosition.cpp" />
+    <ClCompile Include="src\XgTrackerWalkAround.cpp" />
+    <ClCompile Include="src\XgKeyboardEvent.cpp" />
+    <ClCompile Include="src\XgLight.cpp" />
+    <ClCompile Include="src\XgRail.cpp" />
+    <ClCompile Include="src\XgRailTrack.cpp" />
+    <ClCompile Include="src\XgActionRoll.cpp" />
+    <ClCompile Include="src\XgFsm.cpp" />
+    <ClCompile Include="src\XgState.cpp" />
+    <ClCompile Include="src\XgObjectTerrain.cpp" />
+    <ClCompile Include="src\XgRailPosition.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

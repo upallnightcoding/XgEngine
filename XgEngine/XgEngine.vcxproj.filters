@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="xgl">
+      <UniqueIdentifier>{492a6266-b99f-4c3e-999d-a6ba53d5f0b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xg">
+      <UniqueIdentifier>{188e51f0-64cf-4a35-babf-75f1375b8fbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xg\camera">
+      <UniqueIdentifier>{a4c49d42-50f7-4178-ae28-15129134e449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xg\object">
+      <UniqueIdentifier>{88220181-03c3-4259-9f7e-560f34062d97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xg\light">
+      <UniqueIdentifier>{07a61cfb-75df-4ef8-a58a-fced5cd4d401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xg\engine">
+      <UniqueIdentifier>{dcf552ec-d891-4ca9-ae72-964299e843cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xg\behavior">
+      <UniqueIdentifier>{893807c8-8362-43a2-a7e0-79051b2345b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xg\fsm">
+      <UniqueIdentifier>{c4d20993-3668-4eb1-aacc-bc28ec930412}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\XgProgram.cpp">
+      <Filter>xgl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgTransform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgConstant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgKeyboardEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgCamera.cpp">
+      <Filter>xg\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgTracker.cpp">
+      <Filter>xg\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgTrackerCircle.cpp">
+      <Filter>xg\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgTrackerPosition.cpp">
+      <Filter>xg\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgTrackerWalkAround.cpp">
+      <Filter>xg\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgData.cpp">
+      <Filter>xg\object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgObject.cpp">
+      <Filter>xg\object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgObjectFactory.cpp">
+      <Filter>xg\object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgLight.cpp">
+      <Filter>xg\light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgRail.cpp">
+      <Filter>xg\light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgRailTrack.cpp">
+      <Filter>xg\light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgEngine.cpp">
+      <Filter>xg\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgRender.cpp">
+      <Filter>xg\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgWindow.cpp">
+      <Filter>xg\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgAction.cpp">
+      <Filter>xg\behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgActionGlow.cpp">
+      <Filter>xg\behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgActionSpin.cpp">
+      <Filter>xg\behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgBehavior.cpp">
+      <Filter>xg\behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgActionRoll.cpp">
+      <Filter>xg\behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgFsm.cpp">
+      <Filter>xg\fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgState.cpp">
+      <Filter>xg\fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgObjectTerrain.cpp">
+      <Filter>xg\object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgRailPosition.cpp">
+      <Filter>xg\light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgScene.cpp">
+      <Filter>xg\engine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\XglProgram.h">
+      <Filter>xgl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgConstants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgTransform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgConstant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgVertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgKeyboardEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgCamera.h">
+      <Filter>xg\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgTracker.h">
+      <Filter>xg\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgTrackerCircle.h">
+      <Filter>xg\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgTrackerPosition.h">
+      <Filter>xg\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgTrackerWalkAround.h">
+      <Filter>xg\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgData.h">
+      <Filter>xg\object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgObject.h">
+      <Filter>xg\object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgObjectFactory.h">
+      <Filter>xg\object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgObjectInfo.h">
+      <Filter>xg\object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgLight.h">
+      <Filter>xg\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgRail.h">
+      <Filter>xg\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgRailTrack.h">
+      <Filter>xg\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Xg.h">
+      <Filter>xg\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgEngine.h">
+      <Filter>xg\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgRender.h">
+      <Filter>xg\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgWindow.h">
+      <Filter>xg\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgAction.h">
+      <Filter>xg\behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgActionGlow.h">
+      <Filter>xg\behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgActionSpin.h">
+      <Filter>xg\behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgBehavior.h">
+      <Filter>xg\behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgActionRoll.h">
+      <Filter>xg\behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgFsm.h">
+      <Filter>xg\fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgState.h">
+      <Filter>xg\fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgObjectTerrain.h">
+      <Filter>xg\object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgRailPosition.h">
+      <Filter>xg\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgScene.h">
+      <Filter>xg\engine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+</Project>

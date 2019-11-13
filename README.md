@@ -4,6 +4,8 @@ Xg has been a few years in the making.  But through tedious phototyping and rese
 
 # Xg - Game Engine
 
+![Overview Class Diagram](doc/images/Capture.PNG)
+
 # Xgl - Language
 
 # Xgv - GUI

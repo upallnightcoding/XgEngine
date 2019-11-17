@@ -24,9 +24,30 @@ public:
 
 	void setLightPosition(float x, float y, float z);
 
+	void fillMode();
+	void lineMode();
+	void pointMode();
+
 private:
 	vector<XgObject*> objectList;
 	XgCamera camera;
 	XgLight light;
+
+	GLenum mode;
 };
+
+inline void XgScene::fillMode()
+{
+	mode = GL_FILL;
+}
+
+inline void XgScene::lineMode()
+{
+	mode = GL_LINE;
+}
+
+inline void XgScene::pointMode()
+{
+	mode = GL_POINT;
+}
 

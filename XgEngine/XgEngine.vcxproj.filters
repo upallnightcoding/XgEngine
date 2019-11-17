@@ -37,6 +37,9 @@
     <Filter Include="xg\fsm">
       <UniqueIdentifier>{c4d20993-3668-4eb1-aacc-bc28ec930412}</UniqueIdentifier>
     </Filter>
+    <Filter Include="xg\perlin">
+      <UniqueIdentifier>{c61cd6c4-a795-4f20-a4cb-6d1897cd64ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\XgProgram.cpp">
@@ -128,6 +131,9 @@
     </ClCompile>
     <ClCompile Include="src\XgScene.cpp">
       <Filter>xg\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgPerlin.cpp">
+      <Filter>xg\perlin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="src\XgScene.h">
       <Filter>xg\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgPerlin.h">
+      <Filter>xg\perlin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

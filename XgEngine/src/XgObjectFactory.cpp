@@ -37,13 +37,13 @@ XgObjectFactory::~XgObjectFactory()
 {
 }
 
-XgObject *XgObjectFactory::terrain(string textureFile, int nPoints, float size)
+XgObject *XgObjectFactory::terrain(string textureFile, int nPoints, float size, float smooth)
 {
-	XgObjectTerrain *terrain = new XgObjectTerrain(nPoints, size);
+	XgObjectTerrain *terrain = new XgObjectTerrain(nPoints, size, smooth);
 
 	XgObjectInfo objectInfo;
 	objectInfo.type = XgObjectInfoType::VERTEX_AND_SHADER;
-	objectInfo.shaderName = "GeneralVertext.shader";
+	objectInfo.shaderName = "LowPolyTerrain.shader";
 	objectInfo.nIndices = terrain->getnIndices();
 	objectInfo.indices = terrain->getIndices();
 	objectInfo.nVertices = terrain->getnVertices();

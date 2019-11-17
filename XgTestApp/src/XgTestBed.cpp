@@ -13,6 +13,7 @@ const string WALL_IMAGE = "wall.jpg";
 const string SUNSET_IMAGE = "sunset.jpg";
 const string STRIPES_IMAGE = "stripes.jpg";
 const string GRASS_IMAGE = "grass.jpg";
+const string WHITE_IMAGE = "white.jpg";
 
 XgTestBed::XgTestBed()
 {
@@ -59,7 +60,7 @@ XgScene *XgTestBed::rollingBall()
 	//sphere->add(new XgActionRoll());
 
 	//XgObject *floor = objectFactory.rectangle(WALL_IMAGE);
-	XgObject *floor = objectFactory.terrain(WALL_IMAGE, 300, 50.0);
+	XgObject *floor = objectFactory.terrain(WALL_IMAGE, 300, 50.0, 2.0);
 	floor->move(0.0, floorPosition, 0.0);
 
 	// Add objects to the active screen
@@ -86,7 +87,7 @@ XgScene *XgTestBed::terrain()
 {
 	XgObjectFactory objectFactory;
 
-	XgObject *terrainObject = objectFactory.terrain(WALL_IMAGE, 10, 10.0);
+	XgObject *terrainObject = objectFactory.terrain(WHITE_IMAGE, 25, 15.0, 3.0);
 	terrainObject->move(0.0, -2.0f, 0.0);
 
 	// Camera Source Tracking
@@ -100,8 +101,10 @@ XgScene *XgTestBed::terrain()
 	//scene->add(new XgRailPosition(0.0, 10.0, 0.0));
 
 	XgScene *scene = new XgScene();
+	scene->lineMode();
 	scene->addObject(terrainObject);
 	scene->addCamera(trackerCircle);
+	//scene->addCamera(new XgTrackerWalkAround(0.01f));
 
 	return(scene);
 

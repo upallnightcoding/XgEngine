@@ -5,7 +5,7 @@
 class XgObjectTerrain
 {
 public:
-	XgObjectTerrain(int vertexCount, float size);
+	XgObjectTerrain(int vertexCount, float size, float smooth);
 	virtual ~XgObjectTerrain();
 
 public:
@@ -17,8 +17,6 @@ public:
 
 private:
 	void generateVertex();
-	float generateHeight(float x, float z);
-	float makeNoise(float x, float z);
 
 private:
 	unsigned int *indices;
@@ -29,9 +27,7 @@ private:
 
 	int vertexCount;
 	float size;
-
-	float AMPLITUDE;
-	unsigned int seed;
+	float smooth;
 };
 
 inline int XgObjectTerrain::getnFaces()

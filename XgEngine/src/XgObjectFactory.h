@@ -14,6 +14,6 @@ public:
 	XgObject *cube(string textureFile);
 	XgObject *rectangle(string textureFile);
 	XgObject *triangle(string textureFile);
-	XgObject *terrain(string textureFile, int nPoints, float size);
+	XgObject *terrain(string textureFile, int nPoints, float size, float smooth);
 };
 

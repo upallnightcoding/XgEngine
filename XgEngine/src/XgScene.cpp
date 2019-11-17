@@ -4,7 +4,7 @@
 
 XgScene::XgScene()
 {
-	
+	mode = GL_FILL;
 }
 
 XgScene::~XgScene()
@@ -53,6 +53,8 @@ create()
 *****************************************************************************/
 void XgScene::create(GLFWwindow* window, int screenWidth, int screenHeight)
 {
+	glPolygonMode(GL_FRONT_AND_BACK, mode);
+
 	camera.create(window);
 
 	for (auto object : objectList) {

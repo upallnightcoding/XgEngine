@@ -4,12 +4,6 @@
 
 XgData::XgData(XgObjectInfo &objectInfo)
 {
-	//this->nIndices = objectInfo.nIndices;
-	//this->indices = objectInfo.indices;
-
-	//this->nVertices = objectInfo.nVertices;
-	//this->vertices = objectInfo.vertices;
-
 	string objectFormatFile;
 
 	switch (objectInfo.type) {

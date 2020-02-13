@@ -168,6 +168,7 @@
     <ClInclude Include="src\XgObjectTerrain.h" />
     <ClInclude Include="src\XgRailPosition.h" />
     <ClInclude Include="src\XgPerlin.h" />
+    <ClInclude Include="src\XgGenericData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\XgEngine.cpp" />
@@ -201,6 +202,7 @@
     <ClCompile Include="src\XgObjectTerrain.cpp" />
     <ClCompile Include="src\XgRailPosition.cpp" />
     <ClCompile Include="src\XgPerlin.cpp" />
+    <ClCompile Include="src\XgGenericData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

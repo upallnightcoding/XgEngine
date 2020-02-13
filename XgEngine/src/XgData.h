@@ -21,6 +21,9 @@ public:
 	virtual ~XgData();
 
 public:
+	unsigned int vbo, vao, ebo;
+
+public:
 	void createData();
 	void remove();
 	void displayObject();
@@ -29,7 +32,6 @@ public:
 	void loadObj(string pathName, GLfloat r, GLfloat g, GLfloat b);
 
 private:
-	unsigned int vbo, vao, ebo;
 	unsigned int *indices;
 	XgVertex *vertices;
 	int nIndices;

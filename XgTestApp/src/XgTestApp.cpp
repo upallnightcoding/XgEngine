@@ -51,7 +51,8 @@ int main()
 
 	XgEngine engine(800, 600);
 
-	engine.add(XgTestBed::terrain());
+	//engine.add(XgTestBed::terrain());
+	engine.add(XgTestBed::spinningFloor());
 
 	engine.startRenderingWindow();
 

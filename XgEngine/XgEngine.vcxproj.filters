@@ -40,6 +40,9 @@
     <Filter Include="xg\perlin">
       <UniqueIdentifier>{c61cd6c4-a795-4f20-a4cb-6d1897cd64ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="xg\data">
+      <UniqueIdentifier>{efe1148c-dbeb-41d0-a6ea-ddcce0716fa0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\XgProgram.cpp">
@@ -74,9 +77,6 @@
     </ClCompile>
     <ClCompile Include="src\XgTrackerWalkAround.cpp">
       <Filter>xg\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="src\XgData.cpp">
-      <Filter>xg\object</Filter>
     </ClCompile>
     <ClCompile Include="src\XgObject.cpp">
       <Filter>xg\object</Filter>
@@ -135,6 +135,12 @@
     <ClCompile Include="src\XgPerlin.cpp">
       <Filter>xg\perlin</Filter>
     </ClCompile>
+    <ClCompile Include="src\XgGenericData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgData.cpp">
+      <Filter>xg\data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XglProgram.h">
@@ -175,9 +181,6 @@
     </ClInclude>
     <ClInclude Include="src\XgTrackerWalkAround.h">
       <Filter>xg\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XgData.h">
-      <Filter>xg\object</Filter>
     </ClInclude>
     <ClInclude Include="src\XgObject.h">
       <Filter>xg\object</Filter>
@@ -241,6 +244,12 @@
     </ClInclude>
     <ClInclude Include="src\XgPerlin.h">
       <Filter>xg\perlin</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgGenericData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgData.h">
+      <Filter>xg\data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

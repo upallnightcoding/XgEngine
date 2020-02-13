@@ -39,8 +39,8 @@ XgScene *XgTestBed::spinningFloor()
 
 	scene->addObject(floor);
 
-	//scene->add(new XgTrackerCircle(centerDistance, cameraHeight));
-	scene->addCamera(new XgTrackerPosition(5.0, 5.0, 5.0));
+	scene->addCamera(new XgTrackerCircle(centerDistance, cameraHeight));
+	//scene->addCamera(new XgTrackerPosition(5.0, 5.0, 5.0));
 	scene->add(new XgRailTrack());
 
 	return(scene);

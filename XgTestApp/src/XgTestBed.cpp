@@ -8,6 +8,12 @@
 #include "XgTrackerWalkAround.h"
 #include "XgActionRoll.h"
 #include "XgRailPosition.h"
+#include "XgActionSpin.h"
+#include "XgActionMove.h"
+#include "XgEventFrames.h"
+#include "XgActionSpeed.h"
+#include "XgActionNegDirection.h"
+#include "XgEventGoto.h"
 
 const string WALL_IMAGE = "wall.jpg";
 const string SUNSET_IMAGE = "sunset.jpg";
@@ -19,9 +25,85 @@ XgTestBed::XgTestBed()
 {
 }
 
-
 XgTestBed::~XgTestBed()
 {
+}
+
+XgScene *XgTestBed::testRectangle01()
+{
+	XgObjectFactory objectFactory;
+
+	// TODO Create a resource directory via the explore view
+	XgObject *sphereLeft = objectFactory.sphere("penguin.jpg");
+	sphereLeft->move(-3.0, 0.0, 0.0);
+
+	XgObject *sphereCenter = objectFactory.sphere("sunset.jpg");
+	sphereCenter->move(0.0, 0.0, 0.0);
+	sphereCenter->add(new XgActionSpin(0.0f, 0.05f, 0.0f));
+
+	XgObject *sphereRight = objectFactory.sphere("tiles01.jpg");
+	sphereRight->move(3.0, 0.0, 0.0);
+
+	XgObject *floor = objectFactory.rectangle("nukem.jpg");
+	floor->move(0.0, -1.0, 0.0);
+	floor->turn(radians(-90.0f), 0.0f, 0.0f);
+
+	XgScene *scene = new XgScene();
+
+	scene->add(sphereLeft);
+	scene->add(sphereCenter);
+	scene->add(sphereRight);
+	scene->add(floor);
+
+	scene->add(new XgTrackerWalkAround(0.1f));
+	//scene->add(new XgTrackCircle(7.0f));
+
+	return(scene);
+}
+
+/*****************************************************************************
+spinningFloor() -
+*****************************************************************************/
+XgScene *XgTestBed::backAndForth()
+{
+	const string STATE_FLIP = "FLIP";
+	const string STATE_MOVE = "MOVE";
+
+	float cameraHeight = 3.0f;
+	float centerDistance = 7.0f;
+	float floorPosition = -1.0f;
+	float moveSpeed = 0.01f;
+
+	XgObjectFactory objectFactory;
+
+	XgObject *floor = objectFactory.rectangle(WALL_IMAGE);
+	floor->move(0.0, floorPosition, 0.0);
+
+	XgState *flipState = new XgState(STATE_FLIP);
+	flipState->add(new XgActionNegDirection());
+	flipState->add(new XgEventGoto(STATE_MOVE));
+
+	XgState *moveState = new XgState(STATE_MOVE);
+	moveState->add(new XgActionSpeed(moveSpeed));
+	moveState->add(new XgEventFrames(STATE_FLIP, 120));
+
+	XgFramework *framework = new XgFramework();
+	framework->add(flipState);
+	framework->add(moveState);
+
+	XgObject *sphere = objectFactory.sphere(STRIPES_IMAGE);
+	//sphere->add(new XgActionSpin(0.0f, 0.0f, 0.05f));
+	sphere->add(framework);
+
+	XgScene *scene = new XgScene();
+	scene->add(floor);
+	scene->add(sphere);
+
+	//scene->addCamera(new XgTrackerCircle(centerDistance, cameraHeight));
+	scene->add(new XgTrackerPosition(5.0, 5.0, 5.0));
+	scene->add(new XgRailTrack());
+
+	return(scene);
 }
 
 XgScene *XgTestBed::spinningFloor()
@@ -35,12 +117,17 @@ XgScene *XgTestBed::spinningFloor()
 	XgObject *floor = objectFactory.rectangle(WALL_IMAGE);
 	floor->move(0.0, floorPosition, 0.0);
 
+	XgObject *sphere = objectFactory.sphere(STRIPES_IMAGE);
+	//sphere->add(new XgActionSpin(0.0f, 0.0f, 0.05f));
+	sphere->add(new XgActionMove(0.0f, 0.0f, 0.03f));
+
 	XgScene *scene = new XgScene();
 
-	scene->addObject(floor);
+	scene->add(floor);
+	scene->add(sphere);
 
-	scene->addCamera(new XgTrackerCircle(centerDistance, cameraHeight));
-	//scene->addCamera(new XgTrackerPosition(5.0, 5.0, 5.0));
+	//scene->addCamera(new XgTrackerCircle(centerDistance, cameraHeight));
+	scene->add(new XgTrackerPosition(5.0, 5.0, 5.0));
 	scene->add(new XgRailTrack());
 
 	return(scene);
@@ -66,12 +153,12 @@ XgScene *XgTestBed::rollingBall()
 	// Add objects to the active screen
 	//---------------------------------
 	XgScene *scene = new XgScene();
-	scene->addObject(floor);
+	scene->add(floor);
 	//scene->add(sphere);
 
 	// Camera Source Tracking
 	//-----------------------
-	scene->addCamera(new XgTrackerCircle(centerDistance, cameraHeight));
+	scene->add(new XgTrackerCircle(centerDistance, cameraHeight));
 	//scene->add(new XgTrackerPosition(5.0, 5.0, 5.0));
 	//scene->add(new XgTrackerWalkAround(0.01f));
 
@@ -102,8 +189,8 @@ XgScene *XgTestBed::terrain()
 
 	XgScene *scene = new XgScene();
 	scene->lineMode();
-	scene->addObject(terrainObject);
-	scene->addCamera(trackerCircle);
+	scene->add(terrainObject);
+	scene->add(trackerCircle);
 	//scene->addCamera(new XgTrackerWalkAround(0.01f));
 
 	return(scene);

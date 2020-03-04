@@ -17,7 +17,7 @@ public:
 
 protected:
 	virtual void initRender(GLFWwindow* window);
-	virtual void renderScreen(double &deltaTime, int &updates);
+	virtual void renderScreen(float &deltaTime, int &updates);
 	virtual void closeRender();
 
 private:

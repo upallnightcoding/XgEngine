@@ -30,6 +30,7 @@ void XgShader::setProjection(float fov, int screenWidth, int screenHeight, float
 	mat4 u_projection = perspective(radians(fov), (float)screenWidth / (float)screenHeight, near, far);
 
 	int projectionLocation = glGetUniformLocation(shaderProgram, XgConstant::U_PROJECT);
+
 	glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, value_ptr(u_projection));
 }
 
@@ -62,6 +63,7 @@ void XgShader::use(XgCamera &camera, XgLight &light, XgTransform &transform)
 	uniform(XgConstant::U_VIEW, camera.getView());
 
 	vec4 colour = transform.getColour();
+
 	glUniform4f(vertexColorLocation, colour.r, colour.g, colour.b, colour.a);
 
 	uniform("u_transform", transform.getTransformMatrix());
@@ -121,14 +123,16 @@ void XgShader::link(int vertexShader, int fragmentShader)
 	glLinkProgram(shaderProgram);
 
 	int success;
-	char infoLog[512];
-
+	
 	// check for linking errors
 	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+
 	if (!success) {
+		char infoLog[512];
 		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
 		std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
 	}
+
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 }
@@ -150,6 +154,7 @@ int XgShader::compile(const char *source, GLenum shaderType)
 	//-------------------------------------------------------
 	int success;
 	glGetShaderiv(shaderId, GL_COMPILE_STATUS, &success);
+
 	if (!success) {
 		char infoLog[512];
 		glGetShaderInfoLog(shaderId, 512, NULL, infoLog);

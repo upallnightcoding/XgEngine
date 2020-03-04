@@ -3,14 +3,15 @@
 #include "Xg.h"
 #include "XgState.h"
 
-class XgFsm
+class XgFramework
 {
 public:
-	XgFsm();
-	virtual ~XgFsm();
+	XgFramework();
+	virtual ~XgFramework();
 
 public:
 	void add(XgState *state);
+	XgBehavior *update();
 
 private:
 	map<string, XgState*> states;

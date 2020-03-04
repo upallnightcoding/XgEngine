@@ -12,5 +12,7 @@ public:
 	static XgScene *spinningFloor();
 	static XgScene *rollingBall();
 	static XgScene *terrain();
+	static XgScene *backAndForth();
+	static XgScene *testRectangle01();
 };
 

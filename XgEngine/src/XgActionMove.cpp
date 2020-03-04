@@ -1,22 +1,23 @@
-#include "XgActionSpin.h"
+#include "XgActionMove.h"
 
 
 
-XgActionSpin::XgActionSpin(float dx, float dy, float dz)
+XgActionMove::XgActionMove(float dx, float dy, float dz)
 {
 	this->dx = dx;
 	this->dy = dy;
 	this->dz = dz;
 }
 
-XgActionSpin::~XgActionSpin()
+
+XgActionMove::~XgActionMove()
 {
 }
 
 /*****************************************************************************
-render()
+update() -
 *****************************************************************************/
-void XgActionSpin::update(float deltaTime, XgTransform &transform)
+void XgActionMove::update(float deltaTime, XgTransform &transform)
 {
-	transform.turn(dx, dy, dz);
+	transform.move(dx, dy, dz);
 }

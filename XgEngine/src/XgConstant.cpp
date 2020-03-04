@@ -22,3 +22,5 @@ const string XgConstant::IMAGE_DIRECTORY = "images\\";
 const string XgConstant::MODEL_DIRECTORY = "models\\";
 
 const float XgConstant::PIE = 3.14159f;
+
+const string XgConstant::EMPTY_STRING = "";

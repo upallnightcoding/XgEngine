@@ -7,6 +7,7 @@ XgTransform::XgTransform()
 	scaleObj = vec3(1.0);
 	colourObj = vec4(0.0, 0.0, 0.0, 1.0);
 
+	direction = vec3(1.0, 0.0, 0.0);
 }
 
 XgTransform::~XgTransform()
@@ -57,6 +58,27 @@ void XgTransform::move(float x, float y, float z)
 	translateObj.x += x;
 	translateObj.y += y;
 	translateObj.z += z;
+}
+
+/******************************************************************************
+move() - Adjust the position of the object based on the speed and current
+delta time of the render loop.  
+******************************************************************************/
+void XgTransform::move(float speed, float deltaTime)
+{
+	translateObj.x += direction.x * speed * deltaTime;
+	translateObj.y += direction.y * speed * deltaTime;
+	translateObj.z += direction.z * speed * deltaTime;
+}
+
+/******************************************************************************
+flipDirection() - 
+******************************************************************************/
+void XgTransform::flipDirection()
+{
+	direction.x *= -1.0;
+	direction.y *= -1.0;
+	direction.z *= -1.0;
 }
 
 /******************************************************************************

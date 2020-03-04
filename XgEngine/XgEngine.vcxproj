@@ -77,7 +77,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)resources\stb\include;$(SolutionDir)resources\GLM\include;$(SolutionDir)resources\GLFW\include;$(SolutionDir)resources\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)resources\loader;$(SolutionDir)resources\stb\include;$(SolutionDir)resources\GLM\include;$(SolutionDir)resources\GLFW\include;$(SolutionDir)resources\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)resources\stb\include;$(SolutionDir)resources\GLM\include;$(SolutionDir)resources\GLFW\include;$(SolutionDir)resources\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)resources\loader;$(SolutionDir)resources\stb\include;$(SolutionDir)resources\GLM\include;$(SolutionDir)resources\GLFW\include;$(SolutionDir)resources\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -163,12 +163,19 @@
     <ClInclude Include="src\XgRail.h" />
     <ClInclude Include="src\XgRailTrack.h" />
     <ClInclude Include="src\XgActionRoll.h" />
-    <ClInclude Include="src\XgFsm.h" />
+    <ClInclude Include="src\XgFramework.h" />
     <ClInclude Include="src\XgState.h" />
     <ClInclude Include="src\XgObjectTerrain.h" />
     <ClInclude Include="src\XgRailPosition.h" />
     <ClInclude Include="src\XgPerlin.h" />
     <ClInclude Include="src\XgGenericData.h" />
+    <ClInclude Include="src\XgDataObjectTexture.h" />
+    <ClInclude Include="src\XgActionMove.h" />
+    <ClInclude Include="src\XgEvent.h" />
+    <ClInclude Include="src\XgEventFrames.h" />
+    <ClInclude Include="src\XgActionSpeed.h" />
+    <ClInclude Include="src\XgActionNegDirection.h" />
+    <ClInclude Include="src\XgEventGoto.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\XgEngine.cpp" />
@@ -197,12 +204,19 @@
     <ClCompile Include="src\XgRail.cpp" />
     <ClCompile Include="src\XgRailTrack.cpp" />
     <ClCompile Include="src\XgActionRoll.cpp" />
-    <ClCompile Include="src\XgFsm.cpp" />
+    <ClCompile Include="src\XgFramework.cpp" />
     <ClCompile Include="src\XgState.cpp" />
     <ClCompile Include="src\XgObjectTerrain.cpp" />
     <ClCompile Include="src\XgRailPosition.cpp" />
     <ClCompile Include="src\XgPerlin.cpp" />
     <ClCompile Include="src\XgGenericData.cpp" />
+    <ClCompile Include="src\XgDataObjectTexture.cpp" />
+    <ClCompile Include="src\XgActionMove.cpp" />
+    <ClCompile Include="src\XgEvent.cpp" />
+    <ClCompile Include="src\XgEventFrames.cpp" />
+    <ClCompile Include="src\XgActionSpeed.cpp" />
+    <ClCompile Include="src\XgActionNegDirection.cpp" />
+    <ClCompile Include="src\XgEventGoto.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

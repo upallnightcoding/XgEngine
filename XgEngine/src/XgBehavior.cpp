@@ -11,6 +11,9 @@ XgBehavior::~XgBehavior()
 {
 }
 
+/*****************************************************************************
+add() - 
+*****************************************************************************/
 void XgBehavior::add(XgAction *action)
 {
 	if (action != NULL) {
@@ -18,7 +21,10 @@ void XgBehavior::add(XgAction *action)
 	}
 }
 
-void XgBehavior::update(double deltaTime, XgTransform &transform)
+/*****************************************************************************
+update() - 
+*****************************************************************************/
+void XgBehavior::update(float deltaTime, XgTransform &transform)
 {
 	for (auto action : behaviorList) {
 		action->update(deltaTime, transform);

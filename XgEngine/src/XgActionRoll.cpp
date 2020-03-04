@@ -20,7 +20,7 @@ XgActionRoll::~XgActionRoll()
 /*****************************************************************************
 render()
 *****************************************************************************/
-void XgActionRoll::update(double deltaTime, XgTransform &transform)
+void XgActionRoll::update(float deltaTime, XgTransform &transform)
 {
 	if (firstRoll) {
 		firstRoll = false;

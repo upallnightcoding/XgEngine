@@ -23,6 +23,8 @@ public:
 
 	static const string MODEL_DIRECTORY;
 
+	static const string EMPTY_STRING;
+
 	static const float PIE;
 };
 

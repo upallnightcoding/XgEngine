@@ -34,14 +34,14 @@
     <Filter Include="xg\behavior">
       <UniqueIdentifier>{893807c8-8362-43a2-a7e0-79051b2345b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xg\fsm">
-      <UniqueIdentifier>{c4d20993-3668-4eb1-aacc-bc28ec930412}</UniqueIdentifier>
-    </Filter>
     <Filter Include="xg\perlin">
       <UniqueIdentifier>{c61cd6c4-a795-4f20-a4cb-6d1897cd64ca}</UniqueIdentifier>
     </Filter>
     <Filter Include="xg\data">
       <UniqueIdentifier>{efe1148c-dbeb-41d0-a6ea-ddcce0716fa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xg\framework">
+      <UniqueIdentifier>{c4d20993-3668-4eb1-aacc-bc28ec930412}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -117,11 +117,8 @@
     <ClCompile Include="src\XgActionRoll.cpp">
       <Filter>xg\behavior</Filter>
     </ClCompile>
-    <ClCompile Include="src\XgFsm.cpp">
-      <Filter>xg\fsm</Filter>
-    </ClCompile>
     <ClCompile Include="src\XgState.cpp">
-      <Filter>xg\fsm</Filter>
+      <Filter>xg\framework</Filter>
     </ClCompile>
     <ClCompile Include="src\XgObjectTerrain.cpp">
       <Filter>xg\object</Filter>
@@ -140,6 +137,30 @@
     </ClCompile>
     <ClCompile Include="src\XgData.cpp">
       <Filter>xg\data</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgDataObjectTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgFramework.cpp">
+      <Filter>xg\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgEvent.cpp">
+      <Filter>xg\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgEventFrames.cpp">
+      <Filter>xg\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgActionMove.cpp">
+      <Filter>xg\behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgActionSpeed.cpp">
+      <Filter>xg\behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgActionNegDirection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgEventGoto.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,11 +248,8 @@
     <ClInclude Include="src\XgActionRoll.h">
       <Filter>xg\behavior</Filter>
     </ClInclude>
-    <ClInclude Include="src\XgFsm.h">
-      <Filter>xg\fsm</Filter>
-    </ClInclude>
     <ClInclude Include="src\XgState.h">
-      <Filter>xg\fsm</Filter>
+      <Filter>xg\framework</Filter>
     </ClInclude>
     <ClInclude Include="src\XgObjectTerrain.h">
       <Filter>xg\object</Filter>
@@ -250,6 +268,30 @@
     </ClInclude>
     <ClInclude Include="src\XgData.h">
       <Filter>xg\data</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgDataObjectTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgFramework.h">
+      <Filter>xg\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgEvent.h">
+      <Filter>xg\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgEventFrames.h">
+      <Filter>xg\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgActionMove.h">
+      <Filter>xg\behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgActionSpeed.h">
+      <Filter>xg\behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgActionNegDirection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgEventGoto.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

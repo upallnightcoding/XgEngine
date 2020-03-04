@@ -28,7 +28,7 @@ void XgEngine::initRender(GLFWwindow* window)
 /*****************************************************************************
 render()
 *****************************************************************************/
-void XgEngine::renderScreen(double &deltaTime, int &updates)
+void XgEngine::renderScreen(float &deltaTime, int &updates)
 {
 	render.animate(deltaTime, updates);
 }

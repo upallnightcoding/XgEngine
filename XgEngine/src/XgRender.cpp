@@ -22,7 +22,7 @@ void XgRender::create(GLFWwindow* window, int screenWidth, int screenHeight)
 /*****************************************************************************
 animate() -
 *****************************************************************************/
-void XgRender::animate(double &deltaTime, int &updates)
+void XgRender::animate(float &deltaTime, int &updates)
 {
 	scene->render(deltaTime, updates);
 }

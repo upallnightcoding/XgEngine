@@ -14,6 +14,10 @@ public:
 	vec4 getColour();
 
 	void move(float x, float y, float z);
+	void move(float speed, float deltaTime);
+
+	void flipDirection();
+
 	void turn(float x, float y, float z);
 	void size(float x, float y, float z);
 	void size(float value);
@@ -28,5 +32,7 @@ private:
 	vec3 rotateObj;
 	vec3 scaleObj;
 	vec4 colourObj;
+
+	vec3 direction;
 };
 

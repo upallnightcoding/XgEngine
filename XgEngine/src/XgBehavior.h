@@ -11,7 +11,7 @@ public:
 
 public:
 	void add(XgAction *action);
-	void update(double deltaTime, XgTransform &transform);
+	void update(float deltaTime, XgTransform &transform);
 
 private:
 	vector<XgAction*> behaviorList;

@@ -13,11 +13,11 @@ public:
 	virtual ~XgScene();
 
 public:
-	void addObject(XgObject *object);
-	void addCamera(XgTracker *track);
+	void add(XgObject *object);
+	void add(XgTracker *track);
 	void add(XgRail *rail);
 
-	void render(double &deltaTime, int &updates);
+	void render(float &deltaTime, int &updates);
 	void create(GLFWwindow* window, int screenWidth, int screenHeight);
 
 	void setCameraPosition(float x, float y, float z);

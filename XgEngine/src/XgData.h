@@ -17,23 +17,26 @@ struct XgFacePoint {
 class XgData
 {
 public:
-	XgData(XgObjectInfo &objectInfo);
+	XgData();
 	virtual ~XgData();
 
 public:
 	unsigned int vbo, vao, ebo;
 
 public:
-	void createData();
-	void remove();
-	void displayObject();
+	virtual void dataFormat() = 0;
+	virtual void drawObject() = 0;
+	virtual void deAllocate() = 0;
 
 	void loadObj(string pathName);
 	void loadObj(string pathName, GLfloat r, GLfloat g, GLfloat b);
+	void loadTinyObj(string pathname);
 
-private:
-	unsigned int *indices;
+protected:
+	uint32_t *indices;
 	XgVertex *vertices;
+	//std::vector<XgVertex> vertices;
+	//std::vector<uint32_t> indices;
 	int nIndices;
 	int nFaces;
 	int nVertices;

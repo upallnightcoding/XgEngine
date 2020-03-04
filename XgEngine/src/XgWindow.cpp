@@ -55,7 +55,7 @@ void XgWindow::setScreenSize(int screenWidth, int screenHeight)
 	this->screenHeight = screenHeight;
 }
 
-int XgWindow::startRenderingWindow()
+int XgWindow::startAnimation()
 {
 	// glfw: initialize and configure
 	// ------------------------------
@@ -110,17 +110,17 @@ int XgWindow::startRenderingWindow()
 	initRender(window);
 
 	// TODO Parameterize the 60.0
-	static double limitFPS = 1.0 / 60.0;
+	static float limitFPS = 1.0f / 60.0f;
 
-	double lastTime = glfwGetTime(), timer = lastTime;
-	double deltaTime = 0, nowTime = 0;
+	float lastTime = (float) glfwGetTime(), timer = lastTime;
+	float deltaTime = 0, nowTime = 0;
 	int frames = 0, updates = 0;
 
-	// render loop
+	// Render Loop
 	// -----------
 	while (!glfwWindowShouldClose(window)) {
 		// - Measure time
-		nowTime = glfwGetTime();
+		nowTime = (float) glfwGetTime();
 		deltaTime += (nowTime - lastTime) / limitFPS;
 		lastTime = nowTime;
 	

@@ -2,7 +2,7 @@
 
 
 
-XgGenericData::XgGenericData(XgObjectInfo &objectInfo) : XgData(objectInfo)
+XgGenericData::XgGenericData(XgObjectInfo &objectInfo) : XgData()
 {
 }
 

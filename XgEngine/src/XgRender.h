@@ -9,7 +9,7 @@ public:
 	virtual ~XgRender();
 
 public:
-	void animate(double &deltaTime, int &updates);
+	void animate(float &deltaTime, int &updates);
 	void add(XgScene *scene);
 	void create(GLFWwindow* window, int screenWidth, int screenHeight);
 

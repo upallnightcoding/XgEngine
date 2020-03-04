@@ -8,7 +8,7 @@ public:
 	virtual ~XgActionRoll();
 
 public:
-	void update(double deltaTime, XgTransform &transform);
+	void update(float deltaTime, XgTransform &transform);
 
 private:
 	bool firstRoll;

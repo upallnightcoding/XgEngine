@@ -27,7 +27,7 @@ void XgScene::setCameraPosition(float x, float y, float z)
 /*****************************************************************************
 add()
 *****************************************************************************/
-void XgScene::addObject(XgObject *object)
+void XgScene::add(XgObject *object)
 {
 	objectList.push_back(object);
 }
@@ -35,7 +35,7 @@ void XgScene::addObject(XgObject *object)
 /*****************************************************************************
 add()
 *****************************************************************************/
-void XgScene::addCamera(XgTracker *track)
+void XgScene::add(XgTracker *track)
 {
 	camera.add(track);
 }
@@ -66,7 +66,7 @@ void XgScene::create(GLFWwindow* window, int screenWidth, int screenHeight)
 /*****************************************************************************
 render()
 *****************************************************************************/
-void XgScene::render(double &deltaTime, int &updates)
+void XgScene::render(float &deltaTime, int &updates)
 {
 
 	while (deltaTime >= 1.0) {

@@ -9,6 +9,6 @@ public:
 	virtual ~XgAction();
 
 public:
-	virtual void update(double deltaTime, XgTransform &transform) = 0;
+	virtual void update(float deltaTime, XgTransform &transform) = 0;
 };
 

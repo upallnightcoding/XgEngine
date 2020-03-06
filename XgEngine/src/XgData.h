@@ -35,10 +35,13 @@ public:
 protected:
 	uint32_t *indices;
 	XgVertex *vertices;
-	//std::vector<XgVertex> vertices;
-	//std::vector<uint32_t> indices;
+	
 	int nIndices;
 	int nFaces;
 	int nVertices;
+
+private:
+	vector<XgVertex> verticesData;
+	vector<uint32_t> indicesData;
 };
 

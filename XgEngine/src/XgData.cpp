@@ -5,24 +5,6 @@
 
 #include "Xg.h"
 
-struct Vertex {
-	glm::vec3 pos;
-	glm::vec3 color;
-	glm::vec2 texCoord;
-
-	bool operator==(const Vertex& other) const {
-		return pos == other.pos && color == other.color && texCoord == other.texCoord;
-	}
-};
-
-namespace std {
-	template<> struct hash<Vertex> {
-		size_t operator()(Vertex const& vertex) const {
-			return ((hash<glm::vec3>()(vertex.pos) ^ (hash<glm::vec3>()(vertex.color) << 1)) >> 1) ^ (hash<glm::vec2>()(vertex.texCoord) << 1);
-		}
-	};
-}
-
 XgData::XgData()
 {
 	
@@ -105,15 +87,14 @@ void XgData::loadObj(string pathName, GLfloat r, GLfloat g, GLfloat b)
 	nVertices = objPos.size();
 
 	vertices = new XgVertex[nVertices];
-	indices = new unsigned int[nFaces];
+	indices = new uint32_t[nFaces];
 
-	//vertices.resize(nVertices);
-	//indices.resize(nFaces);
 	for (int i = 0; i < nFaces; i++) {
 		int pointIndex = allFacePoints[i].vertex;
 		vertices[pointIndex].point = objPos[pointIndex];
 		vertices[pointIndex].normal = objNormals[allFacePoints[i].normal];
 		vertices[pointIndex].texture = objTexture[allFacePoints[i].texture];
+		vertices[pointIndex].color = { 0.0, 0.0, 0.0 };
 
 		indices[i] = pointIndex;
 	}
@@ -130,31 +111,40 @@ void XgData::loadTinyObj(string pathname)
 		throw std::runtime_error(warn + err);
 	}
 
-	std::unordered_map<Vertex, uint32_t> uniqueVertices = {};
+	std::unordered_map<XgVertex, uint32_t> uniqueVertices = {};
 
 	for (const auto& shape : shapes) {
 		for (const auto& index : shape.mesh.indices) {
-			Vertex vertex = {};
+			XgVertex vertex = {};
 
-			vertex.pos = {
+			vertex.point = {
 				attrib.vertices[3 * index.vertex_index + 0],
 				attrib.vertices[3 * index.vertex_index + 1],
 				attrib.vertices[3 * index.vertex_index + 2]
 			};
 
-			vertex.texCoord = {
+			vertex.texture = {
 				attrib.texcoords[2 * index.texcoord_index + 0],
 				1.0f - attrib.texcoords[2 * index.texcoord_index + 1]
+			};
+
+			vertex.normal = {
+				attrib.normals[3 * index.normal_index + 0],
+				attrib.normals[3 * index.normal_index + 1],
+				attrib.normals[3 * index.normal_index + 2]
 			};
 
 			vertex.color = { 1.0f, 1.0f, 1.0f };
 
 			if (uniqueVertices.count(vertex) == 0) {
-				//uniqueVertices[vertex] = static_cast<uint32_t>(vertices.size());
-				//vertices.push_back(vertex);
+				uniqueVertices[vertex] = static_cast<uint32_t>(verticesData.size());
+				verticesData.push_back(vertex);
 			}
 
-			//indices.push_back(uniqueVertices[vertex]);
+			indicesData.push_back(uniqueVertices[vertex]);
 		}
 	}
+
+	indices = indicesData.data();
+	vertices = verticesData.data();
 }

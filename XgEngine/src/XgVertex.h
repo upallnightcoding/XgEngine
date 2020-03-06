@@ -6,6 +6,11 @@ struct XgVertex {
 	vec3 point;
 	vec3 normal;
 	vec2 texture;
+	vec3 color;
+
+	bool operator==(const XgVertex& other) const {
+		return point == other.point && normal == other.normal && texture == other.texture;
+	}
 };
 
 namespace std {

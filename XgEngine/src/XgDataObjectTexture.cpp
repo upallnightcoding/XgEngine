@@ -7,7 +7,9 @@ XgDataObjectTexture::XgDataObjectTexture(string objectFormatFile) : XgData()
 	string directory =
 		XgConstant::WORK_SPACE + XgConstant::MODEL_DIRECTORY;
 
-	loadObj(directory + objectFormatFile);
+	//loadObj(directory + objectFormatFile);
+
+	loadTinyObj(directory + objectFormatFile);
 }
 
 XgDataObjectTexture::~XgDataObjectTexture()
@@ -38,16 +40,22 @@ void XgDataObjectTexture::dataFormat()
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, nIndices * sizeof(uint32_t), indices, GL_STATIC_DRAW);
 
 	// position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	// color attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	// normal attribute
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
 	// texture coord attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	//------------------------
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(6 * sizeof(float)));
 	glEnableVertexAttribArray(2);
+
+	// Color coord attribute
+	//----------------------
+	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(8 * sizeof(float)));
+	glEnableVertexAttribArray(3);
 
 	// note that this is allowed, the call to glVertexAttribPointer registered VBO 
 	// as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind

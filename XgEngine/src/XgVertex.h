@@ -9,14 +9,18 @@ struct XgVertex {
 	vec3 color;
 
 	bool operator==(const XgVertex& other) const {
-		return point == other.point && normal == other.normal && texture == other.texture;
+		return point == other.point && color == other.color && texture == other.texture;
 	}
 };
 
 namespace std {
 	template<> struct hash<XgVertex> {
 		size_t operator()(XgVertex const& vertex) const {
-			return ((hash<glm::vec3>()(vertex.point) ^ (hash<glm::vec3>()(vertex.normal) << 1)) >> 1) ^ (hash<glm::vec2>()(vertex.texture) << 1);
+			return (
+				(hash<glm::vec3>()(vertex.point) ^ 
+				(hash<glm::vec3>()(vertex.color) << 1)) >> 1) ^
+				(hash<glm::vec2>()(vertex.texture) << 1);
 		}
 	};
 }
+

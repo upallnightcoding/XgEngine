@@ -20,6 +20,7 @@ const string SUNSET_IMAGE = "sunset.jpg";
 const string STRIPES_IMAGE = "stripes.jpg";
 const string GRASS_IMAGE = "grass.jpg";
 const string WHITE_IMAGE = "white.jpg";
+const string NUKEM_IMAGE = "nukem.jpg";
 
 XgTestBed::XgTestBed()
 {
@@ -76,8 +77,10 @@ XgScene *XgTestBed::backAndForth()
 
 	XgObjectFactory objectFactory;
 
-	XgObject *floor = objectFactory.rectangle(WALL_IMAGE);
+	//XgObject *floor = objectFactory.rectangle(WALL_IMAGE);
+	XgObject *floor = objectFactory.cube(WALL_IMAGE);
 	floor->move(0.0, floorPosition, 0.0);
+	floor->scale(2.0, 1.0, 2.0);
 
 	XgState *flipState = new XgState(STATE_FLIP);
 	flipState->add(new XgActionNegDirection());
@@ -85,13 +88,13 @@ XgScene *XgTestBed::backAndForth()
 
 	XgState *moveState = new XgState(STATE_MOVE);
 	moveState->add(new XgActionSpeed(moveSpeed));
-	moveState->add(new XgEventFrames(STATE_FLIP, 120));
+	moveState->add(new XgEventFrames(STATE_FLIP, 180));
 
 	XgFramework *framework = new XgFramework();
 	framework->add(flipState);
 	framework->add(moveState);
 
-	XgObject *sphere = objectFactory.sphere(STRIPES_IMAGE);
+	XgObject *sphere = objectFactory.sphere(WALL_IMAGE);
 	//sphere->add(new XgActionSpin(0.0f, 0.0f, 0.05f));
 	sphere->add(framework);
 
@@ -99,7 +102,7 @@ XgScene *XgTestBed::backAndForth()
 	scene->add(floor);
 	scene->add(sphere);
 
-	//scene->addCamera(new XgTrackerCircle(centerDistance, cameraHeight));
+	//scene->add(new XgTrackerCircle(centerDistance, cameraHeight));
 	scene->add(new XgTrackerPosition(5.0, 5.0, 5.0));
 	scene->add(new XgRailTrack());
 
@@ -127,7 +130,8 @@ XgScene *XgTestBed::spinningFloor()
 	scene->add(sphere);
 
 	//scene->addCamera(new XgTrackerCircle(centerDistance, cameraHeight));
-	scene->add(new XgTrackerPosition(5.0, 5.0, 5.0));
+	scene->add(new XgTrackerWalkAround(0.01f));
+	//scene->add(new XgTrackerPosition(5.0, 5.0, 5.0));
 	scene->add(new XgRailTrack());
 
 	return(scene);

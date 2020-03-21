@@ -15,7 +15,6 @@ XgData::~XgData()
 	
 }
 
-
 /*****************************************************************************
 loadObj() -
 *****************************************************************************/
@@ -100,6 +99,9 @@ void XgData::loadObj(string pathName, GLfloat r, GLfloat g, GLfloat b)
 	}
 }
 
+/*****************************************************************************
+loadTinyObj() -
+*****************************************************************************/
 void XgData::loadTinyObj(string pathname)
 {
 	tinyobj::attrib_t attrib;
@@ -147,4 +149,8 @@ void XgData::loadTinyObj(string pathname)
 
 	indices = indicesData.data();
 	vertices = verticesData.data();
+
+	nFaces = 0;
+	nIndices = indicesData.size();
+	nVertices = verticesData.size();
 }

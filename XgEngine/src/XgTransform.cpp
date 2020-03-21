@@ -37,7 +37,7 @@ mat4 XgTransform::getTransformMatrix()
 
 	// Set the transform scale
 	//------------------------
-	transform = scale(transform, scaleObj);
+	transform = glm::scale(transform, scaleObj);
 
 	return(transform);
 }
@@ -113,7 +113,7 @@ void XgTransform::position(float x, float y, float z)
 /******************************************************************************
 size() -
 ******************************************************************************/
-void XgTransform::size(float x, float y, float z)
+void XgTransform::scale(float x, float y, float z)
 {
 	scaleObj.x = x;
 	scaleObj.y = y;
@@ -132,9 +132,9 @@ void XgTransform::paint(vec4 &colourObj)
 size() - Return the scaled size of the current objeft with x, y, and z 
 scaling values equal.
 *****************************************************************************/
-void XgTransform::size(float value)
+void XgTransform::scale(float value)
 {
-	size(value, value, value);
+	scale(value, value, value);
 }
 
 /*****************************************************************************

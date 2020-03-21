@@ -14,7 +14,7 @@ public:
 	virtual ~XgObject();
 
 public:
-	void render(XgLight &light, XgCamera &camera);
+	void render(XgScreenSize &screenSize, XgLight &light, XgCamera &camera);
 	void update(float deltaTime);
 	void add(XgAction *action);
 	void add(XgFramework *framework);
@@ -22,6 +22,8 @@ public:
 
 	void move(float x, float y, float z);
 	void turn(float x, float y, float z);
+
+	void scale(float x, float y, float z);
 
 private:
 	XgTransform transform;
@@ -41,6 +43,11 @@ inline void XgObject::move(float x, float y, float z)
 inline void XgObject::turn(float x, float y, float z)
 {
 	transform.turn(x, y, z);
+}
+
+inline void XgObject::scale(float x, float y, float z)
+{
+	transform.scale(x, y, z);
 }
 
 

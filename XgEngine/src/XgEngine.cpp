@@ -12,7 +12,6 @@ XgEngine::XgEngine(int screenWidth, int screenHeight)
 	scene = NULL;
 }
 
-
 XgEngine::~XgEngine()
 {
 }
@@ -22,7 +21,7 @@ render()
 *****************************************************************************/
 void XgEngine::initRender(GLFWwindow* window)
 {
-	render.create(window, screenWidth, screenHeight);
+	render.create(window);
 }
 
 /*****************************************************************************
@@ -30,7 +29,7 @@ render()
 *****************************************************************************/
 void XgEngine::renderScreen(float &deltaTime, int &updates)
 {
-	render.animate(deltaTime, updates);
+	render.animate(*screenSize, deltaTime, updates);
 }
 
 /*****************************************************************************

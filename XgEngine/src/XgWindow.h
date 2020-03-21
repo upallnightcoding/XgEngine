@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Xg.h"
+#include "XgScreenSize.h"
 
 class XgWindow
 {
@@ -10,7 +11,6 @@ public:
 
 public:
 	int startAnimation();
-	void setScreenSize(int screenWidth, int screenHeight);
 
 protected:
 	virtual void renderScreen(float &deltaTime, int &updates) = 0;
@@ -18,7 +18,6 @@ protected:
 	virtual void closeRender() = 0;
 
 protected:
-	int screenWidth;
-	int screenHeight;
+	XgScreenSize *screenSize;
 };
 

@@ -18,7 +18,7 @@ int main()
 
 	// Define the engine and attributes
 	//---------------------------------
-	XgEngine engine(800, 600);
+	XgEngine engine(1000, 600);
 
 	// Load the scene into the engine
 	//-------------------------------

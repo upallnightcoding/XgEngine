@@ -17,8 +17,8 @@ public:
 	void add(XgTracker *track);
 	void add(XgRail *rail);
 
-	void render(float &deltaTime, int &updates);
-	void create(GLFWwindow* window, int screenWidth, int screenHeight);
+	void render(XgScreenSize &screenSize, float &deltaTime, int &updates);
+	void create(GLFWwindow* window);
 
 	void setCameraPosition(float x, float y, float z);
 

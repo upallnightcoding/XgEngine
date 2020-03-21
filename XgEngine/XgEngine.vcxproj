@@ -176,6 +176,7 @@
     <ClInclude Include="src\XgActionSpeed.h" />
     <ClInclude Include="src\XgActionNegDirection.h" />
     <ClInclude Include="src\XgEventGoto.h" />
+    <ClInclude Include="src\XgScreenSize.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\XgEngine.cpp" />
@@ -217,6 +218,7 @@
     <ClCompile Include="src\XgActionSpeed.cpp" />
     <ClCompile Include="src\XgActionNegDirection.cpp" />
     <ClCompile Include="src\XgEventGoto.cpp" />
+    <ClCompile Include="src\XgScreenSize.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

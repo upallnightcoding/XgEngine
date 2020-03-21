@@ -41,20 +41,17 @@ XgWindow::XgWindow(int screenWidth, int screenHeight)
 {
 	cout << "XgWindow Construtor ..." << endl;
 
-	this->screenWidth = screenWidth;
-	this->screenHeight = screenHeight;
+	screenSize = new XgScreenSize(screenWidth, screenHeight);
 }
 
 XgWindow::~XgWindow()
 {
+	delete screenSize;
 }
 
-void XgWindow::setScreenSize(int screenWidth, int screenHeight)
-{
-	this->screenWidth = screenWidth;
-	this->screenHeight = screenHeight;
-}
-
+/*****************************************************************************
+startAnimation()
+*****************************************************************************/
 int XgWindow::startAnimation()
 {
 	// glfw: initialize and configure
@@ -64,9 +61,9 @@ int XgWindow::startAnimation()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-#ifdef __APPLE__
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this statement to fix compilation on OS X
-#endif
+//#ifdef __APPLE__
+	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this statement to fix compilation on OS X
+//#endif
 
 	GLFWmonitor* primary = glfwGetPrimaryMonitor();
 
@@ -78,7 +75,7 @@ int XgWindow::startAnimation()
 	// glfw window creation
 	// --------------------
 	//GLFWwindow* window = glfwCreateWindow(screenWidth, screenHeight, "LearnOpenGL", primary, NULL);
-	GLFWwindow* window = glfwCreateWindow(screenWidth, screenHeight, "LearnOpenGL", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(screenSize->width(), screenSize->height(), "LearnOpenGL", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;

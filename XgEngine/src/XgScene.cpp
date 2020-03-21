@@ -51,7 +51,7 @@ void XgScene::add(XgRail *rail)
 /*****************************************************************************
 create()
 *****************************************************************************/
-void XgScene::create(GLFWwindow* window, int screenWidth, int screenHeight)
+void XgScene::create(GLFWwindow* window)
 {
 	glPolygonMode(GL_FRONT_AND_BACK, mode);
 
@@ -66,7 +66,7 @@ void XgScene::create(GLFWwindow* window, int screenWidth, int screenHeight)
 /*****************************************************************************
 render()
 *****************************************************************************/
-void XgScene::render(float &deltaTime, int &updates)
+void XgScene::render(XgScreenSize &screenSize, float &deltaTime, int &updates)
 {
 
 	while (deltaTime >= 1.0) {
@@ -83,7 +83,7 @@ void XgScene::render(float &deltaTime, int &updates)
 
 	// - Render at maximum possible frames
 	for (auto object : objectList) {
-		object->render(light, camera);
+		object->render(screenSize, light, camera);
 	}
 
 }

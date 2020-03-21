@@ -70,7 +70,7 @@ XgObject *XgObjectFactory::cube(string textureFile)
 	XgObjectInfo objectInfo;
 	objectInfo.type = XgObjectInfoType::OBJECT_FILE_AND_SHADER;
 	objectInfo.shaderName = "GeneralVertext.shader";
-	objectInfo.objectFormatFile = "cube.obj";
+	objectInfo.objectFormatFile = "cube01.obj";
 	objectInfo.textureFile = textureFile;
 
 	return(new XgObject(objectInfo));

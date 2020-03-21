@@ -19,8 +19,8 @@ public:
 	void flipDirection();
 
 	void turn(float x, float y, float z);
-	void size(float x, float y, float z);
-	void size(float value);
+	void scale(float x, float y, float z);
+	void scale(float value);
 	void position(float x, float y, float z);
 	void position(vec3 point);
 	void paint(vec4 &colourObj);

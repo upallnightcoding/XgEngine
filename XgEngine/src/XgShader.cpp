@@ -23,34 +23,15 @@ XgShader::~XgShader()
 }
 
 /*****************************************************************************
-setProjection() -
-*****************************************************************************/
-void XgShader::setProjection(float fov, int screenWidth, int screenHeight, float near, float far)
-{
-	mat4 u_projection = perspective(radians(fov), (float)screenWidth / (float)screenHeight, near, far);
-
-	int projectionLocation = glGetUniformLocation(shaderProgram, XgConstant::U_PROJECT);
-
-	glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, value_ptr(u_projection));
-}
-
-
-/*****************************************************************************
 use() -
 *****************************************************************************/
-void XgShader::use(XgCamera &camera, XgLight &light, XgTransform &transform)
+void XgShader::use(XgScreenSize &screenSize, XgCamera &camera, XgLight &light, XgTransform &transform)
 {
 	glUseProgram(shaderProgram);
 
-	int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-	//int viewPosLocation = glGetUniformLocation(shaderProgram, "viewPos");
-
-	//shader->setProjection(45.0f, screenWidth, screenHeight, 0.1f, 100.0f);
-	setProjection(keyboardEvent.getFov(), 800, 600, 0.1f, 100.0f);
-
-	//vec3 viewPos = camera.getViewPosition();
-	//glUniform3f(viewPosLocation, viewPos.x, viewPos.y, viewPos.z);
-
+	mat4 u_projection = screenSize.getPerspective(keyboardEvent.getFov());
+	uniform(XgConstant::U_PROJECT, u_projection);
+	 
 	// Define Light Telemetry
 	//-----------------------
 	uniform(XgConstant::U_LIGHT_COLOR, light.getColour());
@@ -58,15 +39,20 @@ void XgShader::use(XgCamera &camera, XgLight &light, XgTransform &transform)
 
 	// Define Camera Telemetry
 	//------------------------
-	uniform("viewPos", camera.getPosition());
+	uniform(XgConstant::U_CAMERA_POSITION, camera.getPosition());
+	uniform(XgConstant::U_CAMERA_VIEW, camera.getView());
 
-	uniform(XgConstant::U_VIEW, camera.getView());
+	uniform(XgConstant::U_OBJECT_COLOR, transform.getColour());
+	uniform(XgConstant::U_OBJECT_TRANSFORM, transform.getTransformMatrix());
+}
 
-	vec4 colour = transform.getColour();
-
-	glUniform4f(vertexColorLocation, colour.r, colour.g, colour.b, colour.a);
-
-	uniform("u_transform", transform.getTransformMatrix());
+/*****************************************************************************
+uniform() -
+*****************************************************************************/
+void XgShader::uniform(string name, vec4 colour)
+{
+	int location = glGetUniformLocation(shaderProgram, name.c_str());
+	glUniform4f(location, colour.r, colour.g, colour.b, colour.a);
 }
 
 /*****************************************************************************
@@ -116,15 +102,16 @@ link() -
 *****************************************************************************/
 void XgShader::link(int vertexShader, int fragmentShader)
 {
-	// link shaders
+	// Link the Vertex and Fragment Shaders
+	//-------------------------------------
 	shaderProgram = glCreateProgram();
 	glAttachShader(shaderProgram, vertexShader);
 	glAttachShader(shaderProgram, fragmentShader);
 	glLinkProgram(shaderProgram);
 
+	// Check for any linking errors
+	//-----------------------------
 	int success;
-	
-	// check for linking errors
 	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
 
 	if (!success) {
@@ -133,6 +120,8 @@ void XgShader::link(int vertexShader, int fragmentShader)
 		std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
 	}
 
+	// Free shader memory and associated name
+	//---------------------------------------
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 }

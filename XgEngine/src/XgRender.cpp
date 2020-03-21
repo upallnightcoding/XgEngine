@@ -14,17 +14,17 @@ XgRender::~XgRender()
 /*****************************************************************************
 create() -
 *****************************************************************************/
-void XgRender::create(GLFWwindow* window, int screenWidth, int screenHeight)
+void XgRender::create(GLFWwindow* window)
 {
-	scene->create(window, screenWidth, screenHeight);
+	scene->create(window);
 }
 
 /*****************************************************************************
 animate() -
 *****************************************************************************/
-void XgRender::animate(float &deltaTime, int &updates)
+void XgRender::animate(XgScreenSize &screenSize, float &deltaTime, int &updates)
 {
-	scene->render(deltaTime, updates);
+	scene->render(screenSize, deltaTime, updates);
 }
 
 /*****************************************************************************

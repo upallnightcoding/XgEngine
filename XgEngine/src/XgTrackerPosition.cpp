@@ -14,9 +14,7 @@ XgTrackerPosition::~XgTrackerPosition()
 {
 }
 
-void XgTrackerPosition::update(vec3 &eye, vec3 &center, vec3 &up)
+void XgTrackerPosition::update(XgRenderContext *context)
 {
-	eye.x = x;
-	eye.y = y;
-	eye.z = z;
+	context->cameraTelemetry()->set(x, y, z);
 }

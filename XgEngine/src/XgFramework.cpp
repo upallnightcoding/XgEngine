@@ -22,7 +22,7 @@ void XgFramework::add(XgState *state)
 			current = state;
 		}
 
-		states[state->getName()] = state;
+		states[state->name()] = state;
 	}
 }
 
@@ -31,14 +31,14 @@ update()
 *****************************************************************************/
 XgBehavior *XgFramework::update()
 {
-	string nextState = current->update();
-	XgBehavior *behavior = NULL;
+	XgBehavior *behavior = current->behavior();
 
+	string nextState = current->update();
 	if (nextState != XgConstant::EMPTY_STRING) {
 		current = states[nextState];
 
 		if (current != NULL) {
-			behavior = current->getBehavior();
+			behavior = current->behavior();
 		}
 	}
 

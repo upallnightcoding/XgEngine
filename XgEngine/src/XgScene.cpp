@@ -55,6 +55,8 @@ void XgScene::create(GLFWwindow* window)
 {
 	glPolygonMode(GL_FRONT_AND_BACK, mode);
 
+	renderContext = new XgRenderContext();
+
 	camera.create(window);
 
 	for (auto object : objectList) {
@@ -68,9 +70,10 @@ render()
 *****************************************************************************/
 void XgScene::render(XgScreenSize &screenSize, float &deltaTime, int &updates)
 {
+	renderContext->screenSize(&screenSize);
 
 	while (deltaTime >= 1.0) {
-		camera.update();
+		camera.update(renderContext);
 		light.update();
 
 		for (auto object : objectList) {	

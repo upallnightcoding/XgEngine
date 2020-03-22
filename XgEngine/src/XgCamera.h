@@ -2,6 +2,7 @@
 
 #include "Xg.h"
 #include "XgTracker.h"
+#include "XgCameraTelemetry.h"
 
 class XgCamera
 {
@@ -11,7 +12,7 @@ public:
 
 public:
 	mat4 getView();
-	void update();
+	void update(XgRenderContext *context);
 	void add(XgTracker *track);
 	void create(GLFWwindow* window);
 
@@ -19,9 +20,7 @@ public:
 	void setPosition(float x, float y, float z);
 
 private:
-	vec3 eye;
-	vec3 center;
-	vec3 up;
+	XgCameraTelemetry telemetry;
 
 	vector<XgTracker*> tracking;
 };

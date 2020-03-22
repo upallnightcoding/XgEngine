@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Xg.h"
+#include "XgRenderContext.h"
 
 class XgTracker
 {
@@ -11,7 +12,7 @@ public:
 public:
 	void set(GLFWwindow* window);
 
-	virtual void update(vec3 &eye, vec3 &center, vec3 &up) = 0;
+	virtual void update(XgRenderContext *context) = 0;
 
 protected:
 	GLFWwindow* window;

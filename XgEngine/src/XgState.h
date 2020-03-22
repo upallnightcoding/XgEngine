@@ -4,6 +4,9 @@
 #include "XgBehavior.h"
 #include "XgEvent.h"
 
+/*****************************************************************************
+class XgState
+*****************************************************************************/
 class XgState
 {
 public:
@@ -18,12 +21,27 @@ public:
 	string update();
 
 public:
-	string getName();
-	XgBehavior *getBehavior();
+	string name();
+	XgBehavior *behavior();
 
 private:
-	string name;
-	XgBehavior *behavior;
-	vector<XgEvent*> eventList;
+	string pName;
+	XgBehavior *pBehavior;
+	vector<XgEvent*> pEventList;
 };
 
+/*****************************************************************************
+getName() - Returns the name of the state.
+*****************************************************************************/
+inline string XgState::name()
+{
+	return(pName);
+}
+
+/*****************************************************************************
+getBehavior() - Returns the behavior of the state
+*****************************************************************************/
+inline XgBehavior *XgState::behavior()
+{
+	return(pBehavior);
+}

@@ -65,6 +65,17 @@ XgObject *XgObjectFactory::sphere(string textureFile)
 	return(new XgObject(objectInfo));
 }
 
+XgObject *XgObjectFactory::monkey(string textureFile)
+{
+	XgObjectInfo objectInfo;
+	objectInfo.type = XgObjectInfoType::OBJECT_FILE_AND_SHADER;
+	objectInfo.shaderName = "GeneralVertext.shader";
+	objectInfo.objectFormatFile = "monkey.obj";
+	objectInfo.textureFile = textureFile;
+
+	return(new XgObject(objectInfo));
+}
+
 XgObject *XgObjectFactory::cube(string textureFile)
 {
 	XgObjectInfo objectInfo;

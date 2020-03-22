@@ -24,9 +24,11 @@ XgTrackerWalkAround::~XgTrackerWalkAround()
 /*****************************************************************************
 update() -
 *****************************************************************************/
-void XgTrackerWalkAround::update(vec3 &eye, vec3 &center, vec3 &up)
+void XgTrackerWalkAround::update(XgRenderContext *context)
 {
-	updateCameraFront();
+	updateCameraPositionWithMouse();
+
+	updateCameraZoom(context);
 
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
 		cameraPos += cameraSpeed * cameraFront;
@@ -44,17 +46,29 @@ void XgTrackerWalkAround::update(vec3 &eye, vec3 &center, vec3 &up)
 		cameraPos += normalize(cross(cameraFront, cameraUp)) * cameraSpeed;
 	}
 
-	eye = cameraPos;
-	center = eye + cameraFront;
+	context->cameraTelemetry()->set(cameraPos, cameraPos + cameraFront);
+}
+
+/*****************************************************************************
+updateCameraZoom()
+*****************************************************************************/
+void XgTrackerWalkAround::updateCameraZoom(XgRenderContext *context)
+{
+	double xOffSet = keyboardEvent.xOffset();
+	double yOffSet = keyboardEvent.yOffSet();
+
+	context->screenSize()->updateFov(-yOffSet);
+
+	keyboardEvent.zeroOffSet();
 }
 
 /*****************************************************************************
 update() -
 *****************************************************************************/
-void XgTrackerWalkAround::updateCameraFront()
+void XgTrackerWalkAround::updateCameraPositionWithMouse()
 {
-	double xpos = keyboardEvent.getXpos();
-	double ypos = keyboardEvent.getYpos();
+	double xpos = keyboardEvent.mouseXpos();
+	double ypos = keyboardEvent.mouseYpos();
 
 	if (firstMouse)
 	{

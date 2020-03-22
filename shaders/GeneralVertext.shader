@@ -16,8 +16,8 @@ out vec3 FragPos;
 void main()
 {
    gl_Position = u_Projection * u_View * u_Transform * vec4(aPosition, 1.0);
+   
    Normal = aNormal;
-   //Normal = vec3(u_Transform * vec4(aNormal, 1.0));
    TexCoord = aTexCoord;
    FragPos = vec3(u_Transform * vec4(aPosition, 1.0));
 }
@@ -39,39 +39,30 @@ out vec4 FragColor;
 
 void main()
 {
-   //FragColor = vec4(oColor, 1.0) + u_Color;
-   //FragColor = texture(u_Texture, TexCoord);
-   //FragColor = texture(u_Texture, TexCoord) + vec4(oColor, 1.0) + u_Color;
-   
-	//vec3 lightPos = vec3(0.0, 0.0, 0.0);
-	//vec3 lightColor = vec3(1.0);
+	vec3 norm = normalize(Normal);
 	
-	float ambientStrength = 0.1;
-	float diffuseStrength = 1.0;
-	
+	// Ambient Light Calculations
+	//---------------------------
+	float ambientStrength = 0.5;
 	vec3 ambientColor = vec3(1.0);
 	vec3 ambientLight = ambientStrength * ambientColor;
-   
-	vec3 norm = normalize(Normal);
+
+	// Diffuse Light Calculations
+	//---------------------------
+	float diffuseStrength = 1.0;	
 	vec3 lightDir = normalize(u_LightPosition - FragPos);
+	float diff = max(dot(norm, lightDir), 0.0);
+	vec3 diffuseLight = diffuseStrength * diff * u_LightColor;
 	
-	float diff = max(dot(Normal, lightDir), 0.0);
-	vec3 diffuse = u_LightColor * diff;
-	
+	// Specular Light Calculations
+	//----------------------------
 	float specularStrength = 1.0;
 	vec3 viewDir = normalize(u_ViewPosition - FragPos);
 	vec3 reflectDir = reflect(-lightDir, norm);  
-	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 100);
-	vec3 specular = specularStrength * spec * u_LightColor;
+	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 10.0);
+	vec3 specularLight = specularStrength * spec * u_LightColor;
 	
-	//diffuse = vec3(0.0);
-   
 	FragColor = 
-		vec4(ambientLight + diffuse, 1.0) * 
+		vec4(ambientLight + diffuseLight + specularLight, 1.0) * 
 		texture(u_Texture, TexCoord);
-		
-	//FragColor = 
-		//vec4(ambientLight + diffuse + specular, 1.0) * 
-		//texture(u_Texture, TexCoord);
-
 }

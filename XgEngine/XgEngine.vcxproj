@@ -177,6 +177,8 @@
     <ClInclude Include="src\XgActionNegDirection.h" />
     <ClInclude Include="src\XgEventGoto.h" />
     <ClInclude Include="src\XgScreenSize.h" />
+    <ClInclude Include="src\XgRenderContext.h" />
+    <ClInclude Include="src\XgCameraTelemetry.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\XgEngine.cpp" />
@@ -219,6 +221,8 @@
     <ClCompile Include="src\XgActionNegDirection.cpp" />
     <ClCompile Include="src\XgEventGoto.cpp" />
     <ClCompile Include="src\XgScreenSize.cpp" />
+    <ClCompile Include="src\XgRenderContext.cpp" />
+    <ClCompile Include="src\XgCameraTelemetry.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

@@ -4,9 +4,7 @@
 
 XgCamera::XgCamera()
 {
-	eye = vec3(0.0, 10.0, 0.0);
-	center = vec3(0.0, 0.0, 0.0);
-	up = vec3(0.0, 1.0, 0.0);
+	
 }
 
 XgCamera::~XgCamera()
@@ -37,7 +35,7 @@ position.
 ******************************************************************************/
 mat4 XgCamera::getView()
 {
-	return(lookAt(eye, center, up));
+	return(telemetry.getLookAt());
 }
 
 /******************************************************************************
@@ -45,7 +43,7 @@ getViewPosition() - Returns the current position of the camera.
 ******************************************************************************/
 vec3 XgCamera::getPosition()
 {
-	return(eye);
+	return(telemetry.eye());
 }
 
 /******************************************************************************
@@ -53,9 +51,7 @@ setViewPosition() - Sets the camera position
 ******************************************************************************/
 void XgCamera::setPosition(float x, float y, float z)
 {
-	eye.x = x;
-	eye.y = y;
-	eye.z = z;
+	telemetry.set(x, y, z);
 }
 
 /******************************************************************************
@@ -64,9 +60,11 @@ function of the track object.  The "update" function executes each track
 object.  Order of the track objects is based on the a first-in-first-out
 processing rule.
 ******************************************************************************/
-void XgCamera::update()
+void XgCamera::update(XgRenderContext *context)
 {
+	context->cameraTelemetry(&telemetry);
+
 	for (auto track : tracking) {
-		track->update(eye, center, up);
+		track->update(context);
 	}
 }

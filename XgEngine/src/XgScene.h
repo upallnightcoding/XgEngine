@@ -34,6 +34,8 @@ private:
 	XgLight light;
 
 	GLenum mode;
+
+	XgRenderContext *renderContext;
 };
 
 inline void XgScene::fillMode()

@@ -28,7 +28,7 @@ the origin at a given distance.  The camer is the distance is determined by
 the <distance> parameter and the height of the camera is determined by the 
 <height> parameters.
 *****************************************************************************/
-void XgTrackerCircle::update(vec3 &eye, vec3 &center, vec3 &up)
+void XgTrackerCircle::update(XgRenderContext *context)
 {
 	// Capture the distance and timer
 	//-------------------------------
@@ -40,9 +40,9 @@ void XgTrackerCircle::update(vec3 &eye, vec3 &center, vec3 &up)
 	float camX = (float)(sin(timer) * radius);
 	float camZ = (float)(cos(timer) * radius);
 
-	// Determine the eye position
-	//---------------------------
-	eye.x = camX;
-	eye.y = height;
-	eye.z = camZ;
+	// Determine the eye position of the camera
+	//-----------------------------------------
+	//context->setCamera(camX, height, camZ);
+
+	context->cameraTelemetry()->set(camX, height, camZ);
 }

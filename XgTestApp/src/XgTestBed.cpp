@@ -94,8 +94,9 @@ XgScene *XgTestBed::backAndForth()
 	framework->add(flipState);
 	framework->add(moveState);
 
+	//XgObject *sphere = objectFactory.monkey(WALL_IMAGE);
 	XgObject *sphere = objectFactory.sphere(WALL_IMAGE);
-	//sphere->add(new XgActionSpin(0.0f, 0.0f, 0.05f));
+	sphere->add(new XgActionSpin(0.005f, 0.005f, 0.001f));
 	sphere->add(framework);
 
 	XgScene *scene = new XgScene();
@@ -103,7 +104,8 @@ XgScene *XgTestBed::backAndForth()
 	scene->add(sphere);
 
 	//scene->add(new XgTrackerCircle(centerDistance, cameraHeight));
-	scene->add(new XgTrackerPosition(5.0, 5.0, 5.0));
+	//scene->add(new XgTrackerPosition(5.0, 5.0, 5.0));
+	scene->add(new XgTrackerWalkAround(moveSpeed));
 	scene->add(new XgRailTrack());
 
 	return(scene);
@@ -162,8 +164,8 @@ XgScene *XgTestBed::rollingBall()
 
 	// Camera Source Tracking
 	//-----------------------
-	scene->add(new XgTrackerCircle(centerDistance, cameraHeight));
-	//scene->add(new XgTrackerPosition(5.0, 5.0, 5.0));
+	//scene->add(new XgTrackerCircle(centerDistance, cameraHeight));
+	scene->add(new XgTrackerPosition(5.0, 5.0, 5.0));
 	//scene->add(new XgTrackerWalkAround(0.01f));
 
 	// Light Source Tracking

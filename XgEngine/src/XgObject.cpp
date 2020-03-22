@@ -6,7 +6,7 @@ XgObject::XgObject(XgObjectInfo &objectInfo)
 {
 	shader = new XgShader(objectInfo.shaderName);
 	texture = new XgTexture(objectInfo.textureFile);
-	behavior = new XgBehavior();
+	localBehavior = new XgBehavior();
 	data = new XgDataObjectTexture(objectInfo.objectFormatFile);
 	framework = NULL;
 }
@@ -21,8 +21,8 @@ XgObject::~XgObject()
 		delete texture;
 	}
 
-	if (behavior != NULL) {
-		delete behavior;
+	if (localBehavior != NULL) {
+		delete localBehavior;
 	}
 
 	if (data != NULL) {
@@ -52,16 +52,14 @@ update() -
 void XgObject::update(float deltaTime)
 {
 	if (framework != NULL) {
-		XgBehavior *newBehavior = framework->update();
+		XgBehavior *behavior = framework->update();
 
-		if (newBehavior != NULL) {
-			behavior = newBehavior;
+		if (behavior != NULL) {
+			behavior->update(deltaTime, transform);
 		}
 	}
 
-	if (behavior != NULL) {
-		behavior->update(deltaTime, transform);
-	}
+	localBehavior->update(deltaTime, transform);
 }
 
 /*****************************************************************************
@@ -69,7 +67,7 @@ add() -
 *****************************************************************************/
 void XgObject::add(XgAction *action) 
 {
-	behavior->add(action);
+	localBehavior->add(action);
 }
 
 /*****************************************************************************

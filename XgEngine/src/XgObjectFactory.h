@@ -11,6 +11,7 @@ public:
 
 public:
 	XgObject *sphere(string textureFile);
+	XgObject *monkey(string textureFile);
 	XgObject *cube(string textureFile);
 	XgObject *rectangle(string textureFile);
 	XgObject *triangle(string textureFile);

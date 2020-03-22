@@ -29,8 +29,7 @@ void XgShader::use(XgScreenSize &screenSize, XgCamera &camera, XgLight &light, X
 {
 	glUseProgram(shaderProgram);
 
-	mat4 u_projection = screenSize.getPerspective(keyboardEvent.getFov());
-	uniform(XgConstant::U_PROJECT, u_projection);
+	uniform(XgConstant::U_PROJECT, screenSize.getPerspective());
 	 
 	// Define Light Telemetry
 	//-----------------------

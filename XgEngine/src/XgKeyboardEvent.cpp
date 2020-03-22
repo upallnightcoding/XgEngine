@@ -4,13 +4,11 @@
 
 XgKeyboardEvent::XgKeyboardEvent()
 {
-	mouseXpos = 0.0;
-	mouseYpos = 0.0;
+	pMouseXpos = 0.0;
+	pMouseYpos = 0.0;
 
-	xoffset = 0.0;
-	yoffset = 0.0;
-
-	fov = 45.0;
+	pXoffset = 0.0;
+	pYoffset = 0.0;
 }
 
 XgKeyboardEvent::~XgKeyboardEvent()
@@ -22,15 +20,19 @@ setMousePosition()
 *****************************************************************************/
 void XgKeyboardEvent::setMousePosition(double xpos, double ypos)
 {
-	mouseXpos = xpos;
-	mouseYpos = ypos;
+	this->pMouseXpos = xpos;
+	this->pMouseYpos = ypos;
 }
 
+/*****************************************************************************
+setScrollPosition()
+*****************************************************************************/
 void XgKeyboardEvent::setScrollPosition(double xoffset, double yoffset)
 {
-	this->xoffset = xoffset;
-	this->yoffset = yoffset;
+	this->pXoffset = xoffset;
+	this->pYoffset = yoffset;
 
+	/*
 	cout << "fov, yoffset: " << fov << ":" << yoffset << endl;
 
 	//if (fov >= 1.0f && fov <= 90.0f) {
@@ -44,26 +46,5 @@ void XgKeyboardEvent::setScrollPosition(double xoffset, double yoffset)
 	if (fov >= 90.0f) {
 		fov = 90.0f;
 	}
+	*/
 }
-
-float XgKeyboardEvent::getFov()
-{
-	return((float) fov);
-}
-
-/*****************************************************************************
-getXpos()
-*****************************************************************************/
-double XgKeyboardEvent::getXpos()
-{
-	return(mouseXpos);
-}
-
-/*****************************************************************************
-getYpos()
-*****************************************************************************/
-double XgKeyboardEvent::getYpos()
-{
-	return(mouseYpos);
-}
-

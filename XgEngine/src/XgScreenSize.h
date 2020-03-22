@@ -20,24 +20,43 @@ public:
 	float near();
 	float far();
 
-	mat4 getPerspective(float fov);
+	void updateFov(float delta);
+
+	mat4 getPerspective();
 
 private:
 	int pWidth;
 	int pHeight;
 	float pNear;
 	float pFar;
+	float pFov;
 };
 
 /*****************************************************************************
-height() -
+updateFov() - 
+*****************************************************************************/
+inline void XgScreenSize::updateFov(float delta)
+{
+	pFov += delta;
+
+	if (pFov <= 1.0f) {
+		pFov = 1.0f;
+	}
+
+	if (pFov >= 90.0f) {
+		pFov = 90.0f;
+	}
+}
+
+/*****************************************************************************
+height() - Returns the height of the screen.
 *****************************************************************************/
 inline int XgScreenSize::height() {
 	return(pHeight);
 }
 
 /*****************************************************************************
-width() -
+width() - Returns the width of the screen.
 *****************************************************************************/
 inline int XgScreenSize::width() 
 {
@@ -45,7 +64,7 @@ inline int XgScreenSize::width()
 }
 
 /*****************************************************************************
-near() - Returns the "near" clipping of the perspective.
+near() - Returns the near clipping of the perspective.
 *****************************************************************************/
 inline float XgScreenSize::near()
 {
@@ -53,7 +72,7 @@ inline float XgScreenSize::near()
 }
 
 /*****************************************************************************
-far() - Returns the "far" clipping of the perspective.
+far() - Returns the far clipping of the perspective.
 *****************************************************************************/
 inline float XgScreenSize::far()
 {
@@ -71,10 +90,10 @@ inline float XgScreenSize::aspect()
 }
 
 /*****************************************************************************
-getPerspective() -
+getPerspective() - Returns the perspective matrix of the screen.
 *****************************************************************************/
-inline mat4 XgScreenSize::getPerspective(float fov)
+inline mat4 XgScreenSize::getPerspective()
 {
-	return(perspective(radians(fov), aspect(), pNear, pFar));
+	return(perspective(radians(pFov), aspect(), pNear, pFar));
 }
 

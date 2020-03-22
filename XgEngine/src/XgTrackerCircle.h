@@ -14,7 +14,7 @@ public:
 	void setHeight(float height);
 
 public:
-	virtual void update(vec3 &eye, vec3 &center, vec3 &up);
+	virtual void update(XgRenderContext *context);
 
 private:
 	float distance;

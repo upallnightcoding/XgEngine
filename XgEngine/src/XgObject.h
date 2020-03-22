@@ -27,7 +27,7 @@ public:
 
 private:
 	XgTransform transform;
-	XgBehavior *behavior;
+	XgBehavior *localBehavior;
 	XgFramework *framework;
 
 	XgShader *shader;

@@ -11,11 +11,11 @@ public:
 	virtual ~XgTrackerWalkAround();
 
 public:
-	virtual void update(vec3 &eye, vec3 &center, vec3 &up);
+	virtual void update(XgRenderContext *context);
 
 private:
-	void updateCameraFront();
-	void updateFov();
+	void updateCameraPositionWithMouse();
+	void updateCameraZoom(XgRenderContext *context);
 
 private:
 	vec3 cameraPos;

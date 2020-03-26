@@ -14,6 +14,7 @@
 #include "XgActionSpeed.h"
 #include "XgActionNegDirection.h"
 #include "XgEventGoto.h"
+#include "XgRailPosition.h"
 
 const string WALL_IMAGE = "wall.jpg";
 const string SUNSET_IMAGE = "sunset.jpg";
@@ -28,6 +29,21 @@ XgTestBed::XgTestBed()
 
 XgTestBed::~XgTestBed()
 {
+}
+
+XgScene *XgTestBed::figure01()
+{
+	XgObjectFactory objectFactory;
+
+	XgObject *sphere = objectFactory.sphere("grass.jpg");
+	sphere->add(new XgActionSpin(0.0f, 0.02f, 0.0f));
+
+	XgScene *scene = new XgScene();
+	scene->add(sphere);
+	scene->add(new XgTrackerPosition(0.0, 0.0, -5.0));
+	scene->add(new XgRailPosition(0.0, 10.0, 0.0));
+
+	return(scene);
 }
 
 XgScene *XgTestBed::testRectangle01()

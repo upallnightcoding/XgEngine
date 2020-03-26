@@ -4,11 +4,11 @@
 
 #include "XgRail.h"
 
-class XgLight
+class XgLighting
 {
 public:
-	XgLight();
-	virtual ~XgLight();
+	XgLighting();
+	virtual ~XgLighting();
 
 public:
 	void add(XgRail *rail);

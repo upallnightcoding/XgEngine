@@ -159,7 +159,7 @@
     <ClInclude Include="src\XgTrackerPosition.h" />
     <ClInclude Include="src\XgTrackerWalkAround.h" />
     <ClInclude Include="src\XgKeyboardEvent.h" />
-    <ClInclude Include="src\XgLight.h" />
+    <ClInclude Include="src\XgLighting.h" />
     <ClInclude Include="src\XgRail.h" />
     <ClInclude Include="src\XgRailTrack.h" />
     <ClInclude Include="src\XgActionRoll.h" />
@@ -203,7 +203,7 @@
     <ClCompile Include="src\XgTrackerPosition.cpp" />
     <ClCompile Include="src\XgTrackerWalkAround.cpp" />
     <ClCompile Include="src\XgKeyboardEvent.cpp" />
-    <ClCompile Include="src\XgLight.cpp" />
+    <ClCompile Include="src\XgLighting.cpp" />
     <ClCompile Include="src\XgRail.cpp" />
     <ClCompile Include="src\XgRailTrack.cpp" />
     <ClCompile Include="src\XgActionRoll.cpp" />

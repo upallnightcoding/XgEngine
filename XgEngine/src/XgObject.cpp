@@ -37,7 +37,7 @@ XgObject::~XgObject()
 /*****************************************************************************
 render() -
 *****************************************************************************/
-void XgObject::render(XgScreenSize &screenSize, XgLight &light, XgCamera &camera)
+void XgObject::render(XgScreenSize &screenSize, XgLighting &light, XgCamera &camera)
 {
 	shader->use(screenSize, camera, light, transform);
 

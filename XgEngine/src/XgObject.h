@@ -14,7 +14,7 @@ public:
 	virtual ~XgObject();
 
 public:
-	void render(XgScreenSize &screenSize, XgLight &light, XgCamera &camera);
+	void render(XgScreenSize &screenSize, XgLighting &light, XgCamera &camera);
 	void update(float deltaTime);
 	void add(XgAction *action);
 	void add(XgFramework *framework);

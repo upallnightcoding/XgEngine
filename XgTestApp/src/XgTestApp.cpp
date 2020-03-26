@@ -14,22 +14,16 @@ using namespace std;
 
 int main() 
 {
-	cout << "Xg Test App" << endl;
-
 	// Define the engine and attributes
 	//---------------------------------
 	XgEngine engine(1000, 600);
 
 	// Load the scene into the engine
 	//-------------------------------
-	engine.add(XgTestBed::backAndForth());
+	engine.add(XgTestBed::figure01());
 
 	// Start the engine animation
 	//---------------------------
 	engine.startAnimation();
-
-	// Pause
-	//------
-	cin.get();
 }
 

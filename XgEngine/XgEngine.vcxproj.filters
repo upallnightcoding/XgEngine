@@ -75,9 +75,6 @@
     <ClCompile Include="src\XgObjectFactory.cpp">
       <Filter>xg\object</Filter>
     </ClCompile>
-    <ClCompile Include="src\XgLight.cpp">
-      <Filter>xg\light</Filter>
-    </ClCompile>
     <ClCompile Include="src\XgRail.cpp">
       <Filter>xg\light</Filter>
     </ClCompile>
@@ -174,6 +171,9 @@
     <ClCompile Include="src\XgCameraTelemetry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\XgLighting.cpp">
+      <Filter>xg\light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XglProgram.h">
@@ -211,9 +211,6 @@
     </ClInclude>
     <ClInclude Include="src\XgObjectInfo.h">
       <Filter>xg\object</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XgLight.h">
-      <Filter>xg\light</Filter>
     </ClInclude>
     <ClInclude Include="src\XgRail.h">
       <Filter>xg\light</Filter>
@@ -313,6 +310,9 @@
     </ClInclude>
     <ClInclude Include="src\XgCameraTelemetry.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgLighting.h">
+      <Filter>xg\light</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

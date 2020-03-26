@@ -14,5 +14,7 @@ public:
 	static XgScene *terrain();
 	static XgScene *backAndForth();
 	static XgScene *testRectangle01();
+
+	static XgScene *figure01();
 };
 

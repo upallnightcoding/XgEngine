@@ -1,22 +1,22 @@
-#include "XgLight.h"
+#include "XgLighting.h"
 
 
 
-XgLight::XgLight()
+XgLighting::XgLighting()
 {
-	position = vec3(0.0, 1.0, 0.0);
+	position = vec3(0.0, 0.0, 0.0);
 	colour = vec3(1.0);
 }
 
 
-XgLight::~XgLight()
+XgLighting::~XgLighting()
 {
 }
 
 /*****************************************************************************
 add() -
 *****************************************************************************/
-void XgLight::add(XgRail *rail)
+void XgLighting::add(XgRail *rail)
 {
 	if (rail != NULL) {
 		rails.push_back(rail);
@@ -26,14 +26,17 @@ void XgLight::add(XgRail *rail)
 /*****************************************************************************
 update() -
 *****************************************************************************/
-void XgLight::update()
+void XgLighting::update()
 {
 	for (auto rail : rails) {
 		rail->update(position, colour);
 	}
 }
 
-void XgLight::setPosition(float x, float y, float z)
+/*****************************************************************************
+update() -
+*****************************************************************************/
+void XgLighting::setPosition(float x, float y, float z)
 {
 	position.x = x;
 	position.y = y;
@@ -43,7 +46,7 @@ void XgLight::setPosition(float x, float y, float z)
 /*****************************************************************************
 getColour() -
 *****************************************************************************/
-vec3 XgLight::getColour()
+vec3 XgLighting::getColour()
 {
 	return(colour);
 }
@@ -51,7 +54,7 @@ vec3 XgLight::getColour()
 /*****************************************************************************
 getPosition() -
 *****************************************************************************/
-vec3 XgLight::getPosition()
+vec3 XgLighting::getPosition()
 {
 	return(position);
 }

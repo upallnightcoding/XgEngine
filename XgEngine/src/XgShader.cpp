@@ -25,7 +25,7 @@ XgShader::~XgShader()
 /*****************************************************************************
 use() -
 *****************************************************************************/
-void XgShader::use(XgScreenSize &screenSize, XgCamera &camera, XgLight &light, XgTransform &transform)
+void XgShader::use(XgScreenSize &screenSize, XgCamera &camera, XgLighting &light, XgTransform &transform)
 {
 	glUseProgram(shaderProgram);
 

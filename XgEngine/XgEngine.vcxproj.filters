@@ -75,12 +75,6 @@
     <ClCompile Include="src\XgObjectFactory.cpp">
       <Filter>xg\object</Filter>
     </ClCompile>
-    <ClCompile Include="src\XgRail.cpp">
-      <Filter>xg\light</Filter>
-    </ClCompile>
-    <ClCompile Include="src\XgRailTrack.cpp">
-      <Filter>xg\light</Filter>
-    </ClCompile>
     <ClCompile Include="src\XgEngine.cpp">
       <Filter>xg\engine</Filter>
     </ClCompile>
@@ -110,9 +104,6 @@
     </ClCompile>
     <ClCompile Include="src\XgObjectTerrain.cpp">
       <Filter>xg\object</Filter>
-    </ClCompile>
-    <ClCompile Include="src\XgRailPosition.cpp">
-      <Filter>xg\light</Filter>
     </ClCompile>
     <ClCompile Include="src\XgScene.cpp">
       <Filter>xg\engine</Filter>
@@ -174,6 +165,15 @@
     <ClCompile Include="src\XgLighting.cpp">
       <Filter>xg\light</Filter>
     </ClCompile>
+    <ClCompile Include="src\XgLight.cpp">
+      <Filter>xg\light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgLightPosition.cpp">
+      <Filter>xg\light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgLightTrack.cpp">
+      <Filter>xg\light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XglProgram.h">
@@ -212,12 +212,6 @@
     <ClInclude Include="src\XgObjectInfo.h">
       <Filter>xg\object</Filter>
     </ClInclude>
-    <ClInclude Include="src\XgRail.h">
-      <Filter>xg\light</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XgRailTrack.h">
-      <Filter>xg\light</Filter>
-    </ClInclude>
     <ClInclude Include="src\Xg.h">
       <Filter>xg\engine</Filter>
     </ClInclude>
@@ -250,9 +244,6 @@
     </ClInclude>
     <ClInclude Include="src\XgObjectTerrain.h">
       <Filter>xg\object</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XgRailPosition.h">
-      <Filter>xg\light</Filter>
     </ClInclude>
     <ClInclude Include="src\XgScene.h">
       <Filter>xg\engine</Filter>
@@ -312,6 +303,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\XgLighting.h">
+      <Filter>xg\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgLight.h">
+      <Filter>xg\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgLightPosition.h">
+      <Filter>xg\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgLightTrack.h">
       <Filter>xg\light</Filter>
     </ClInclude>
   </ItemGroup>

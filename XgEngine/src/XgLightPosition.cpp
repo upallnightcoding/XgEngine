@@ -1,8 +1,8 @@
-#include "XgRailPosition.h"
+#include "XgLightPosition.h"
 
 
 
-XgRailPosition::XgRailPosition(float x, float y, float z)
+XgLightPosition::XgLightPosition(float x, float y, float z)
 {
 	this->x = x;
 	this->y = y;
@@ -10,14 +10,14 @@ XgRailPosition::XgRailPosition(float x, float y, float z)
 }
 
 
-XgRailPosition::~XgRailPosition()
+XgLightPosition::~XgLightPosition()
 {
 }
 
 /*****************************************************************************
 update() - 
 *****************************************************************************/
-void XgRailPosition::update(vec3 &position, vec3 &colour)
+void XgLightPosition::update(vec3 &position, vec3 &colour)
 {
 	position = vec3(x, y, z);
 }

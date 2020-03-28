@@ -16,7 +16,7 @@ XgLighting::~XgLighting()
 /*****************************************************************************
 add() -
 *****************************************************************************/
-void XgLighting::add(XgRail *rail)
+void XgLighting::add(XgLight *rail)
 {
 	if (rail != NULL) {
 		rails.push_back(rail);

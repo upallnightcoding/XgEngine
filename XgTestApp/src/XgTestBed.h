@@ -15,6 +15,6 @@ public:
 	static XgScene *backAndForth();
 	static XgScene *testRectangle01();
 
-	static XgScene *figure01();
+	static XgScene *spinningSphere();
 };
 

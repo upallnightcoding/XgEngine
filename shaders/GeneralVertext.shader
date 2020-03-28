@@ -60,9 +60,11 @@ void main()
 	float specularStrength = 1.0;
 	vec3 viewDir = normalize(u_ViewPosition - FragPos);
 	vec3 reflectDir = reflect(-lightDir, norm);  
-	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 10.0);
+	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 30.0);
 	vec3 specularLight = specularStrength * spec * u_LightColor;
 	
+	// Fragment Point Color
+	//---------------------
 	FragColor = 
 		vec4(ambientLight + diffuseLight + specularLight, 1.0) * 
 		texture(u_Texture, TexCoord);

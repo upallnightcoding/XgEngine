@@ -43,7 +43,7 @@ void XgScene::add(XgTracker *track)
 /*****************************************************************************
 add()
 *****************************************************************************/
-void XgScene::add(XgRail *rail)
+void XgScene::add(XgLight *rail)
 {
 	light.add(rail);
 }

@@ -6,6 +6,10 @@
 #include "XgShader.h"
 #include "XgCamera.h"
 
+/*****************************************************************************
+classs XgScene
+*****************************************************************************/
+
 class XgScene
 {
 public:
@@ -15,7 +19,7 @@ public:
 public:
 	void add(XgObject *object);
 	void add(XgTracker *track);
-	void add(XgRail *rail);
+	void add(XgLight *rail);
 
 	void render(XgScreenSize &screenSize, float &deltaTime, int &updates);
 	void create(GLFWwindow* window);

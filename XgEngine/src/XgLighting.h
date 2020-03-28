@@ -2,7 +2,7 @@
 
 #include "Xg.h"
 
-#include "XgRail.h"
+#include "XgLight.h"
 
 class XgLighting
 {
@@ -11,7 +11,7 @@ public:
 	virtual ~XgLighting();
 
 public:
-	void add(XgRail *rail);
+	void add(XgLight *rail);
 	void update();
 
 	vec3 getColour();
@@ -23,6 +23,6 @@ private:
 	vec3 position;
 	vec3 colour;
 
-	vector<XgRail*> rails;
+	vector<XgLight*> rails;
 };
 

@@ -3,18 +3,17 @@
 #include "XgObjectFactory.h"
 #include "XgObject.h"
 #include "XgTrackerCircle.h"
-#include "XgRailTrack.h"
+#include "XgLightTrack.h"
 #include "XgTrackerPosition.h"
 #include "XgTrackerWalkAround.h"
 #include "XgActionRoll.h"
-#include "XgRailPosition.h"
+#include "XgLightPosition.h"
 #include "XgActionSpin.h"
 #include "XgActionMove.h"
 #include "XgEventFrames.h"
 #include "XgActionSpeed.h"
 #include "XgActionNegDirection.h"
 #include "XgEventGoto.h"
-#include "XgRailPosition.h"
 
 const string WALL_IMAGE = "wall.jpg";
 const string SUNSET_IMAGE = "sunset.jpg";
@@ -22,6 +21,7 @@ const string STRIPES_IMAGE = "stripes.jpg";
 const string GRASS_IMAGE = "grass.jpg";
 const string WHITE_IMAGE = "white.jpg";
 const string NUKEM_IMAGE = "nukem.jpg";
+const string BLUE_IMAGE = "blue.jpg";
 
 XgTestBed::XgTestBed()
 {
@@ -31,17 +31,31 @@ XgTestBed::~XgTestBed()
 {
 }
 
-XgScene *XgTestBed::figure01()
+XgScene *XgTestBed::spinningSphere()
 {
+	// (1) Instantiate Object Factor
+	//------------------------------
 	XgObjectFactory objectFactory;
 
-	XgObject *sphere = objectFactory.sphere("grass.jpg");
+	// (2) Create sphere object and start spinning action
+	//---------------------------------------------------
+	XgObject *sphere = objectFactory.sphere(GRASS_IMAGE);
 	sphere->add(new XgActionSpin(0.0f, 0.02f, 0.0f));
 
+	// (3) Position light source
+	//--------------------------
+	XgLight *light = new XgLightPosition(0.0, 10.0, 0.0);
+
+	// (4) Postion view point
+	//-----------------------
+	XgTracker *tracker = new XgTrackerPosition(0.0, 0.0, 7.0);
+
+	// (5) Create a scene objects and establish light and view
+	//--------------------------------------------------------
 	XgScene *scene = new XgScene();
 	scene->add(sphere);
-	scene->add(new XgTrackerPosition(0.0, 0.0, -5.0));
-	scene->add(new XgRailPosition(0.0, 10.0, 0.0));
+	scene->add(tracker);
+	scene->add(light);
 
 	return(scene);
 }
@@ -120,9 +134,9 @@ XgScene *XgTestBed::backAndForth()
 	scene->add(sphere);
 
 	//scene->add(new XgTrackerCircle(centerDistance, cameraHeight));
-	//scene->add(new XgTrackerPosition(5.0, 5.0, 5.0));
-	scene->add(new XgTrackerWalkAround(moveSpeed));
-	scene->add(new XgRailTrack());
+	scene->add(new XgTrackerPosition(5.0, 5.0, 5.0));
+	//scene->add(new XgTrackerWalkAround(moveSpeed));
+	scene->add(new XgLightTrack());
 
 	return(scene);
 }
@@ -150,7 +164,7 @@ XgScene *XgTestBed::spinningFloor()
 	//scene->addCamera(new XgTrackerCircle(centerDistance, cameraHeight));
 	scene->add(new XgTrackerWalkAround(0.01f));
 	//scene->add(new XgTrackerPosition(5.0, 5.0, 5.0));
-	scene->add(new XgRailTrack());
+	scene->add(new XgLightTrack());
 
 	return(scene);
 }
@@ -186,7 +200,7 @@ XgScene *XgTestBed::rollingBall()
 
 	// Light Source Tracking
 	//----------------------
-	scene->add(new XgRailPosition(0.0, 10.0, 0.0));
+	scene->add(new XgLightPosition(0.0, 10.0, 0.0));
 
 	return(scene);
 

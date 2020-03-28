@@ -14,16 +14,20 @@ using namespace std;
 
 int main() 
 {
-	// Define the engine and attributes
-	//---------------------------------
+	// (1) Define the engine and attributes
+	//-------------------------------------
 	XgEngine engine(1000, 600);
 
-	// Load the scene into the engine
-	//-------------------------------
-	engine.add(XgTestBed::figure01());
+	// (2) Create scene object
+	//------------------------
+	XgScene *scene = XgTestBed::backAndForth();
 
-	// Start the engine animation
-	//---------------------------
+	// (3) Load the scene into the engine
+	//-----------------------------------
+	engine.add(scene);
+
+	// (4) Start the engine animation
+	//-------------------------------
 	engine.startAnimation();
 }
 

@@ -2,11 +2,11 @@
 
 #include "Xg.h"
 
-class XgRail
+class XgLight
 {
 public:
-	XgRail();
-	virtual ~XgRail();
+	XgLight();
+	virtual ~XgLight();
 
 public:
 	virtual void update(vec3 &position, vec3 &colour) = 0;

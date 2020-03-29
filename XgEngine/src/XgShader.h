@@ -16,17 +16,19 @@ public:
 	virtual ~XgShader();
 
 public:
+	void use();
+	void use(mat4 lightSpaceMatrix);
 	void use(XgScreenSize &screenSize, XgCamera &camera, XgLighting &light, XgTransform &transform);
 	void create();
-	string readShaderFile(const string pathname);
-
-private:
-	int compile(const char *source, GLenum shaderType);
-	void link(int vertexShader, int fragmentShader);
 
 	void uniform(string name, vec3 value);
 	void uniform(string name, vec4 value);
 	void uniform(string name, mat4 value);
+	
+private:
+	string readShaderFile(const string pathname);
+	int compile(const char *source, GLenum shaderType);
+	void link(int vertexShader, int fragmentShader);
 
 private:
 	int shaderProgram;

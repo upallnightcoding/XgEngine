@@ -147,9 +147,6 @@
     <ClCompile Include="src\XgEventGoto.cpp">
       <Filter>xg\framework</Filter>
     </ClCompile>
-    <ClCompile Include="src\XgTexture.cpp">
-      <Filter>xg\texture</Filter>
-    </ClCompile>
     <ClCompile Include="src\XgKeyboardEvent.cpp">
       <Filter>xg\engine</Filter>
     </ClCompile>
@@ -173,6 +170,12 @@
     </ClCompile>
     <ClCompile Include="src\XgLightTrack.cpp">
       <Filter>xg\light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgShadowTexture.cpp">
+      <Filter>xg\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgImageTexture.cpp">
+      <Filter>xg\texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -287,9 +290,6 @@
     <ClInclude Include="src\XgEventGoto.h">
       <Filter>xg\framework</Filter>
     </ClInclude>
-    <ClInclude Include="src\XgTexture.h">
-      <Filter>xg\texture</Filter>
-    </ClInclude>
     <ClInclude Include="src\XgKeyboardEvent.h">
       <Filter>xg\engine</Filter>
     </ClInclude>
@@ -313,6 +313,12 @@
     </ClInclude>
     <ClInclude Include="src\XgLightTrack.h">
       <Filter>xg\light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgShadowTexture.h">
+      <Filter>xg\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgImageTexture.h">
+      <Filter>xg\texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

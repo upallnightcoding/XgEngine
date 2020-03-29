@@ -18,20 +18,26 @@ void processInput(GLFWwindow *window) {
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
 // ---------------------------------------------------------------------------------------------
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+void frameBufferSizeCallback(GLFWwindow* window, int width, int height) {
 	// make sure the viewport matches the new window dimensions; note that width and 
 	// height will be significantly larger than specified on retina displays.
 	glViewport(0, 0, width, height);
 }
 
-void mouse_callback(GLFWwindow* window, double xpos, double ypos) 
+/*****************************************************************************
+mouseCallback()
+*****************************************************************************/
+void mouseCallback(GLFWwindow* window, double xpos, double ypos) 
 {
 	keyboardEvent.setMousePosition(xpos, ypos);
 }
 
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+/*****************************************************************************
+scrollCallback()
+*****************************************************************************/
+void scrollCallback(GLFWwindow* window, double xOffset, double yOffset)
 {
-	keyboardEvent.setScrollPosition(xoffset, yoffset);
+	keyboardEvent.setScrollPosition(xOffset, yOffset);
 }
 
 XgWindow::XgWindow(int screenWidth, int screenHeight)
@@ -58,31 +64,22 @@ int XgWindow::startAnimation()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-//#ifdef __APPLE__
-	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this statement to fix compilation on OS X
-//#endif
+	//GLFWmonitor* primary = glfwGetPrimaryMonitor();
+	GLFWmonitor* primary = NULL;
 
-	GLFWmonitor* primary = glfwGetPrimaryMonitor();
+	GLFWwindow* window = glfwCreateWindow(screenSize->width(), screenSize->height(), "LearnOpenGL", primary, NULL);
 
-	int count;
-	GLFWmonitor** monitors = glfwGetMonitors(&count);
-
-	//GLFWvidmode* modes = glfwGetVideoModes(primary, &count);
-
-	// glfw window creation
-	// --------------------
-	//GLFWwindow* window = glfwCreateWindow(screenWidth, screenHeight, "LearnOpenGL", primary, NULL);
-	GLFWwindow* window = glfwCreateWindow(screenSize->width(), screenSize->height(), "LearnOpenGL", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
 		return -1;
 	}
+
 	glfwMakeContextCurrent(window);
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-	glfwSetCursorPosCallback(window, mouse_callback);
-	glfwSetScrollCallback(window, scroll_callback);
+	glfwSetFramebufferSizeCallback(window, frameBufferSizeCallback);
+	glfwSetCursorPosCallback(window, mouseCallback);
+	glfwSetScrollCallback(window, scrollCallback);
 
 	// tell GLFW to capture our mouse
 	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -95,10 +92,10 @@ int XgWindow::startAnimation()
 		return false;
 	}
 
-	// configure global opengl state
+	// Configure global opengl state
 	// -----------------------------
 	glEnable(GL_DEPTH_TEST);
-	//glDisable(GL_CULL_FACE);
+	glDisable(GL_CULL_FACE);
 	//glShadeModel(GL_FLAT);
 
 	initRender(window);
@@ -110,8 +107,8 @@ int XgWindow::startAnimation()
 	float deltaTime = 0, nowTime = 0;
 	int frames = 0, updates = 0;
 
-	// Render Loop
-	// -----------
+	// Main Render Loop
+	// ----------------
 	while (!glfwWindowShouldClose(window)) {
 		// - Measure time
 		nowTime = (float) glfwGetTime();

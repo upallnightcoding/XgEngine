@@ -102,16 +102,20 @@ XgScene *XgTestBed::backAndForth()
 
 	float cameraHeight = 3.0f;
 	float centerDistance = 7.0f;
-	float floorPosition = -1.0f;
 	float moveSpeed = 0.01f;
 
+	// (1) Instantiate object factory
+	//-------------------------------
 	XgObjectFactory objectFactory;
 
-	//XgObject *floor = objectFactory.rectangle(WALL_IMAGE);
-	XgObject *floor = objectFactory.cube(WALL_IMAGE);
-	floor->move(0.0, floorPosition, 0.0);
-	floor->scale(2.0, 1.0, 2.0);
+	// (2) Create the floor, scale it and define its position
+	//-------------------------------------------------------
+	XgObject *floor = objectFactory.rectangle(BLUE_IMAGE);
+	floor->move(0.0, -1.0, 0.0);
+	floor->scale(2.0);
 
+	// (3) Define the behavior of the sphere
+	//--------------------------------------
 	XgState *flipState = new XgState(STATE_FLIP);
 	flipState->add(new XgActionNegDirection());
 	flipState->add(new XgEventGoto(STATE_MOVE));
@@ -124,18 +128,19 @@ XgScene *XgTestBed::backAndForth()
 	framework->add(flipState);
 	framework->add(moveState);
 
-	//XgObject *sphere = objectFactory.monkey(WALL_IMAGE);
+	// (4) Create the sphere, set it spinning and apply its behavior
+	//--------------------------------------------------------------
 	XgObject *sphere = objectFactory.sphere(WALL_IMAGE);
 	sphere->add(new XgActionSpin(0.005f, 0.005f, 0.001f));
+	sphere->move(-1.0, 0.0, 0.0);
 	sphere->add(framework);
+
+	XgTracker *tracker = new XgTrackerPosition(0.0, 10.0, 10.0);
 
 	XgScene *scene = new XgScene();
 	scene->add(floor);
 	scene->add(sphere);
-
-	//scene->add(new XgTrackerCircle(centerDistance, cameraHeight));
-	scene->add(new XgTrackerPosition(5.0, 5.0, 5.0));
-	//scene->add(new XgTrackerWalkAround(moveSpeed));
+	scene->add(tracker);
 	scene->add(new XgLightTrack());
 
 	return(scene);
@@ -224,7 +229,6 @@ XgScene *XgTestBed::terrain()
 	//scene->add(new XgRailPosition(0.0, 10.0, 0.0));
 
 	XgScene *scene = new XgScene();
-	scene->lineMode();
 	scene->add(terrainObject);
 	scene->add(trackerCircle);
 	//scene->addCamera(new XgTrackerWalkAround(0.01f));

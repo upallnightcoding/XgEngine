@@ -28,4 +28,3 @@ private:
 	XgRender render;
 	XgScene *scene;
 };
-

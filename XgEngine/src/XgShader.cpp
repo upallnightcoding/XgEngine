@@ -45,6 +45,18 @@ void XgShader::use(XgScreenSize &screenSize, XgCamera &camera, XgLighting &light
 	uniform(XgConstant::U_OBJECT_TRANSFORM, transform.getTransformMatrix());
 }
 
+void XgShader::use(mat4 lightSpaceMatrix)
+{
+	glUseProgram(shaderProgram);
+
+	uniform("u_LightSpaceMatrix", lightSpaceMatrix);
+}
+
+void XgShader::use()
+{
+	glUseProgram(shaderProgram);
+}
+
 /*****************************************************************************
 uniform() -
 *****************************************************************************/

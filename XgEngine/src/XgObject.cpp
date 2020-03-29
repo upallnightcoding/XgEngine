@@ -4,8 +4,7 @@
 
 XgObject::XgObject(XgObjectInfo &objectInfo)
 {
-	shader = new XgShader(objectInfo.shaderName);
-	texture = new XgTexture(objectInfo.textureFile);
+	texture = new XgImageTexture(objectInfo.textureFile);
 	localBehavior = new XgBehavior();
 	data = new XgDataObjectTexture(objectInfo.objectFormatFile);
 	framework = NULL;
@@ -13,10 +12,6 @@ XgObject::XgObject(XgObjectInfo &objectInfo)
 
 XgObject::~XgObject()
 {
-	if (shader != NULL) {
-		delete shader;
-	}
-
 	if (texture != NULL) {
 		delete texture;
 	}
@@ -37,9 +32,10 @@ XgObject::~XgObject()
 /*****************************************************************************
 render() -
 *****************************************************************************/
-void XgObject::render(XgScreenSize &screenSize, XgLighting &light, XgCamera &camera)
+void XgObject::render(XgShader *shader)
 {
-	shader->use(screenSize, camera, light, transform);
+	shader->uniform(XgConstant::U_OBJECT_COLOR, transform.getColour());
+	shader->uniform(XgConstant::U_OBJECT_TRANSFORM, transform.getTransformMatrix());
 
 	texture->render();
 
@@ -84,8 +80,6 @@ create() -
 void XgObject::create()
 {
 	data->dataFormat();
-
-	shader->create();
 
 	texture->create();
 }

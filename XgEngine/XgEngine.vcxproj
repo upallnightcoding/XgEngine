@@ -152,7 +152,7 @@
     <ClInclude Include="src\XgBehavior.h" />
     <ClInclude Include="src\XgActionSpin.h" />
     <ClInclude Include="src\XgConstant.h" />
-    <ClInclude Include="src\XgTexture.h" />
+    <ClInclude Include="src\XgImageTexture.h" />
     <ClInclude Include="src\XgCamera.h" />
     <ClInclude Include="src\XgTracker.h" />
     <ClInclude Include="src\XgTrackerCircle.h" />
@@ -179,6 +179,7 @@
     <ClInclude Include="src\XgScreenSize.h" />
     <ClInclude Include="src\XgRenderContext.h" />
     <ClInclude Include="src\XgCameraTelemetry.h" />
+    <ClInclude Include="src\XgShadowTexture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\XgEngine.cpp" />
@@ -196,7 +197,7 @@
     <ClCompile Include="src\XgBehavior.cpp" />
     <ClCompile Include="src\XgActionSpin.cpp" />
     <ClCompile Include="src\XgConstant.cpp" />
-    <ClCompile Include="src\XgTexture.cpp" />
+    <ClCompile Include="src\XgImageTexture.cpp" />
     <ClCompile Include="src\XgCamera.cpp" />
     <ClCompile Include="src\XgTracker.cpp" />
     <ClCompile Include="src\XgTrackerCircle.cpp" />
@@ -223,6 +224,7 @@
     <ClCompile Include="src\XgScreenSize.cpp" />
     <ClCompile Include="src\XgRenderContext.cpp" />
     <ClCompile Include="src\XgCameraTelemetry.cpp" />
+    <ClCompile Include="src\XgShadowTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

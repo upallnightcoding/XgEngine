@@ -4,7 +4,7 @@
 #include "XgTransform.h"
 #include "XgBehavior.h"
 #include "XgShader.h"
-#include "XgTexture.h"
+#include "XgImageTexture.h"
 #include "XgFramework.h"
 
 class XgObject
@@ -14,7 +14,7 @@ public:
 	virtual ~XgObject();
 
 public:
-	void render(XgScreenSize &screenSize, XgLighting &light, XgCamera &camera);
+	void render(XgShader *shader);
 	void update(float deltaTime);
 	void add(XgAction *action);
 	void add(XgFramework *framework);
@@ -24,14 +24,14 @@ public:
 	void turn(float x, float y, float z);
 
 	void scale(float x, float y, float z);
+	void scale(float value);
 
 private:
 	XgTransform transform;
 	XgBehavior *localBehavior;
 	XgFramework *framework;
 
-	XgShader *shader;
-	XgTexture *texture;
+	XgImageTexture *texture;
 	XgData *data;
 };
 
@@ -45,9 +45,20 @@ inline void XgObject::turn(float x, float y, float z)
 	transform.turn(x, y, z);
 }
 
+/*****************************************************************************
+update() - Set the scale factor of the x, y, and z axis.
+*****************************************************************************/
 inline void XgObject::scale(float x, float y, float z)
 {
 	transform.scale(x, y, z);
+}
+
+/*****************************************************************************
+scale() - Set the scale factor of the x, y, and z axis the same.
+*****************************************************************************/
+inline void XgObject::scale(float value)
+{
+	transform.scale(value);
 }
 
 

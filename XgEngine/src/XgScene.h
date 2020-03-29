@@ -28,32 +28,18 @@ public:
 
 	void setLightPosition(float x, float y, float z);
 
-	void fillMode();
-	void lineMode();
-	void pointMode();
+private:
+	void useGeneralShader(XgScreenSize &screenSize);
+	void renderObjects(XgShader *shader);
+	void updateDeltaTime(float &deltaTime, int &updates);
 
 private:
 	vector<XgObject*> objectList;
 	XgCamera camera;
 	XgLighting light;
-
-	GLenum mode;
+	XgShader *generalShader;
 
 	XgRenderContext *renderContext;
 };
 
-inline void XgScene::fillMode()
-{
-	mode = GL_FILL;
-}
-
-inline void XgScene::lineMode()
-{
-	mode = GL_LINE;
-}
-
-inline void XgScene::pointMode()
-{
-	mode = GL_POINT;
-}
 

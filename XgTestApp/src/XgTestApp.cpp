@@ -29,5 +29,7 @@ int main()
 	// (4) Start the engine animation
 	//-------------------------------
 	engine.startAnimation();
+
+	cin.get();
 }
 

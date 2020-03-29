@@ -1,37 +1,45 @@
-#include "XgTexture.h"
+#include "XgImageTexture.h"
 
 #include "Xg.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-XgTexture::XgTexture(string texturePath)
+XgImageTexture::XgImageTexture(string texturePath)
 {
 	this->texturePath = 
 		XgConstant::WORK_SPACE + XgConstant::IMAGE_DIRECTORY + texturePath;
 }
 
 
-XgTexture::~XgTexture()
+XgImageTexture::~XgImageTexture()
 {
 }
 
 /******************************************************************************
 render() -
 ******************************************************************************/
-void XgTexture::render()
+void XgImageTexture::render()
 {
 	glBindTexture(GL_TEXTURE_2D, texture);
 }
 
 /******************************************************************************
-create() -
+create() - Create the actual texture based on texture parameters.
 ******************************************************************************/
-void XgTexture::create()
+void XgImageTexture::create()
 {
-	// Genertate a texture name
+	// Genertate a texture instance
+	//-----------------------------
 	glGenTextures(1, &texture);
 
+	setTextureParameters();
+
+	readImage();
+}
+
+void XgImageTexture::setTextureParameters()
+{
 	// Bind a named texture to a texturing target
 	glBindTexture(GL_TEXTURE_2D, texture);
 
@@ -42,7 +50,13 @@ void XgTexture::create()
 	// Set texture filtering parameters (as GL_LINEAR)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+}
 
+/******************************************************************************
+create() -
+******************************************************************************/
+void XgImageTexture::readImage()
+{
 	stbi_set_flip_vertically_on_load(true);
 
 	// load image, create texture and generate mipmaps
@@ -59,5 +73,4 @@ void XgTexture::create()
 	}
 
 	stbi_image_free(data);
-
 }

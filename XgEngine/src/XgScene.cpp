@@ -1,15 +1,19 @@
 #include "XgScene.h"
 
-
-
 XgScene::XgScene()
 {
 	generalShader = new XgShader("GeneralVertext.shader");
+	shadowShader = new XgShader("ShadowMap.shader");
+	shadowTexture = new XgShadowTexture();
 }
 
 XgScene::~XgScene()
 {
 	delete generalShader;
+
+	delete shadowShader;
+
+	delete shadowTexture;
 }
 
 void XgScene::setLightPosition(float x, float y, float z)
@@ -58,6 +62,10 @@ void XgScene::create(GLFWwindow* window)
 
 	generalShader->create();
 
+	shadowShader->create();
+
+	shadowTexture->create();
+
 	camera.create(window);
 
 	for (auto object : objectList) {
@@ -80,6 +88,8 @@ void XgScene::render(XgScreenSize &screenSize, float &deltaTime, int &updates)
 	// Update all scene objects until we reach the uniform deltatime
 	//--------------------------------------------------------------
 	updateDeltaTime(deltaTime, updates);
+
+	renderShadows();
 
 	// Use the general shader for render the scene
 	//--------------------------------------------
@@ -122,11 +132,61 @@ void XgScene::renderObjects(XgShader *shader)
 }
 
 /*****************************************************************************
+useShadowShader()
+*****************************************************************************/
+void XgScene::renderShadows()
+{
+	shadowTexture->render(light);
+
+	mat4 lightSpaceMatrix = shadowTexture->getLightSpaceMatrix();
+
+	shadowShader->use();
+
+	shadowShader->uniform("u_LightSpaceMatrix", lightSpaceMatrix);
+
+	glViewport(0, 0, 1024, 1024);
+	glClearDepth(1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_POLYGON_OFFSET_FILL);
+	glPolygonOffset(2.0f, 4.0f);
+
+	renderObjects(shadowShader);
+
+	glDisable(GL_POLYGON_OFFSET_FILL);
+}
+
+/*****************************************************************************
 useGeneralShader()
 *****************************************************************************/
 void XgScene::useGeneralShader(XgScreenSize &screenSize)
 {
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	screenSize.viewPort();
+
 	generalShader->use();
+
+	mat4 biasMatrix(
+		0.5, 0.0, 0.0, 0.0,
+		0.0, 0.5, 0.0, 0.0,
+		0.0, 0.0, 0.5, 0.0,
+		0.5, 0.5, 0.5, 1.0
+	);
+
+	mat4 depthBiasMVP = biasMatrix * shadowTexture->getLightSpaceMatrix();
+
+	//glActiveTexture(GL_TEXTURE0);
+	//glBindTexture(GL_TEXTURE_2D, Texture);
+	// Set our "myTextureSampler" sampler to use Texture Unit 0
+	//glUniform1i(TextureID, 0);
+	generalShader->uniform("u_Texture", 0);
+
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, shadowTexture->depthTexture());
+	//glUniform1i(ShadowMapID, 1);
+	generalShader->uniform("shadowMap", 1);
+
+	generalShader->uniform("DepthBiasMVP", depthBiasMVP);
 
 	generalShader->uniform(XgConstant::U_PROJECT, screenSize.getPerspective());
 

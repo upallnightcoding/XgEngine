@@ -46,6 +46,9 @@
     <Filter Include="xg\texture">
       <UniqueIdentifier>{86a98250-51c3-48b8-b97b-3a8144652a52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="xg\shader">
+      <UniqueIdentifier>{eba629ba-e903-4b7c-8502-0f6bd6f94f6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\XgProgram.cpp">
@@ -138,9 +141,6 @@
     <ClCompile Include="src\XgScreenSize.cpp">
       <Filter>xg\engine</Filter>
     </ClCompile>
-    <ClCompile Include="src\XgShader.cpp">
-      <Filter>xg\engine</Filter>
-    </ClCompile>
     <ClCompile Include="src\XgActionNegDirection.cpp">
       <Filter>xg\behavior</Filter>
     </ClCompile>
@@ -176,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="src\XgImageTexture.cpp">
       <Filter>xg\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgShader.cpp">
+      <Filter>xg\shader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -281,9 +284,6 @@
     <ClInclude Include="src\XgScreenSize.h">
       <Filter>xg\engine</Filter>
     </ClInclude>
-    <ClInclude Include="src\XgShader.h">
-      <Filter>xg\engine</Filter>
-    </ClInclude>
     <ClInclude Include="src\XgActionNegDirection.h">
       <Filter>xg\behavior</Filter>
     </ClInclude>
@@ -319,6 +319,9 @@
     </ClInclude>
     <ClInclude Include="src\XgImageTexture.h">
       <Filter>xg\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgShader.h">
+      <Filter>xg\shader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

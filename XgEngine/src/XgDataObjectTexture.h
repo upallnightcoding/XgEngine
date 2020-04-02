@@ -1,11 +1,11 @@
 #pragma once
 #include "XgData.h"
-class XgDataObjectTexture :
+class XgObjectMesh :
 	public XgData
 {
 public:
-	XgDataObjectTexture(string objectFormatFile);
-	virtual ~XgDataObjectTexture();
+	XgObjectMesh(string objectFormatFile);
+	virtual ~XgObjectMesh();
 
 public:
 	virtual void dataFormat();

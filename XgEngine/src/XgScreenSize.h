@@ -24,6 +24,8 @@ public:
 
 	mat4 getPerspective();
 
+	void viewPort();
+
 private:
 	int pWidth;
 	int pHeight;
@@ -31,6 +33,11 @@ private:
 	float pFar;
 	float pFov;
 };
+
+inline void XgScreenSize::viewPort()
+{
+	glViewport(0, 0, pWidth, pHeight);
+}
 
 /*****************************************************************************
 updateFov() - 

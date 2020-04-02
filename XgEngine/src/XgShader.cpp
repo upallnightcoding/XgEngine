@@ -23,38 +23,35 @@ XgShader::~XgShader()
 }
 
 /*****************************************************************************
-use() -
+uniform() -
 *****************************************************************************/
-void XgShader::use(XgScreenSize &screenSize, XgCamera &camera, XgLighting &light, XgTransform &transform)
-{
-	glUseProgram(shaderProgram);
-
-	uniform(XgConstant::U_PROJECT, screenSize.getPerspective());
-	 
-	// Define Light Telemetry
-	//-----------------------
-	uniform(XgConstant::U_LIGHT_COLOR, light.getColour());
-	uniform(XgConstant::U_LIGHT_POSITION, light.getPosition());
-
-	// Define Camera Telemetry
-	//------------------------
-	uniform(XgConstant::U_CAMERA_POSITION, camera.getPosition());
-	uniform(XgConstant::U_CAMERA_VIEW, camera.getView());
-
-	uniform(XgConstant::U_OBJECT_COLOR, transform.getColour());
-	uniform(XgConstant::U_OBJECT_TRANSFORM, transform.getTransformMatrix());
-}
-
-void XgShader::use(mat4 lightSpaceMatrix)
-{
-	glUseProgram(shaderProgram);
-
-	uniform("u_LightSpaceMatrix", lightSpaceMatrix);
-}
-
 void XgShader::use()
 {
 	glUseProgram(shaderProgram);
+}
+
+/*****************************************************************************
+uniform() -
+*****************************************************************************/
+void XgShader::create()
+{
+	string path = XgConstant::WORK_SPACE + XgConstant::SHADER_DIRECTORY;
+	string filename = pathName;
+	string source = readShaderFile(path + filename);
+	size_t seperator = source.find("@");
+	string vertexSource = source.substr(0, seperator);
+	string fragmentSource = source.substr(seperator + 1, source.length());
+
+	cout << "VertexSoure: \n" << vertexSource << endl;
+	cout << "FragmentSource: \n" << fragmentSource << endl;
+
+	const char *vertexShaderSource = vertexSource.c_str();
+	const char *fragmentShaderSource = fragmentSource.c_str();
+
+	int vertexShader = compile(vertexShaderSource, GL_VERTEX_SHADER);
+	int fragmentShader = compile(fragmentShaderSource, GL_FRAGMENT_SHADER);
+
+	link(vertexShader, fragmentShader);
 }
 
 /*****************************************************************************
@@ -84,28 +81,10 @@ void XgShader::uniform(string name, mat4 value)
 	glUniformMatrix4fv(location, 1, GL_FALSE, value_ptr(value));
 }
 
-/*****************************************************************************
-create() -
-*****************************************************************************/
-void XgShader::create()
+void XgShader::uniform(string name, int value)
 {
-	string path = XgConstant::WORK_SPACE + XgConstant::SHADER_DIRECTORY;
-	string filename = pathName;
-	string source = readShaderFile(path + filename);
-	size_t seperator = source.find("@");
-	string vertexSource = source.substr(0, seperator);
-	string fragmentSource = source.substr(seperator + 1, source.length());
-
-	cout << "VertexSoure: \n" << vertexSource << endl;
-	cout << "FragmentSource: \n" << fragmentSource << endl;
-
-	const char *vertexShaderSource = vertexSource.c_str();
-	const char *fragmentShaderSource = fragmentSource.c_str();
-
-	int vertexShader = compile(vertexShaderSource, GL_VERTEX_SHADER);
-	int fragmentShader = compile(fragmentShaderSource, GL_FRAGMENT_SHADER);
-
-	link(vertexShader, fragmentShader);
+	int location = glGetUniformLocation(shaderProgram, name.c_str());
+	glUniform1i(location, value);
 }
 
 /*****************************************************************************

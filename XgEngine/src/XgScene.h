@@ -5,6 +5,7 @@
 #include "XgObject.h"
 #include "XgShader.h"
 #include "XgCamera.h"
+#include "XgShadowTexture.h"
 
 /*****************************************************************************
 classs XgScene
@@ -30,6 +31,7 @@ public:
 
 private:
 	void useGeneralShader(XgScreenSize &screenSize);
+	void renderShadows();
 	void renderObjects(XgShader *shader);
 	void updateDeltaTime(float &deltaTime, int &updates);
 
@@ -38,6 +40,9 @@ private:
 	XgCamera camera;
 	XgLighting light;
 	XgShader *generalShader;
+	XgShader *shadowShader;
+
+	XgShadowTexture *shadowTexture;
 
 	XgRenderContext *renderContext;
 };

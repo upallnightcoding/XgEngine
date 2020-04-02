@@ -1,16 +1,7 @@
 #include <iostream>
 
 #include "XgEngine.h"
-#include "XgObjectFactory.h"
-#include "XgActionGlow.h"
-#include "XgActionSpin.h"
-#include "XgTrackerCircle.h"
-#include "XgTrackerPosition.h"
-#include "XgTrackerWalkAround.h"
-
 #include "XgTestBed.h"
-
-using namespace std;
 
 int main() 
 {

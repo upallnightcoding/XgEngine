@@ -2,7 +2,7 @@
 
 
 
-XgDataObjectTexture::XgDataObjectTexture(string objectFormatFile) : XgData()
+XgObjectMesh::XgObjectMesh(string objectFormatFile) : XgData()
 {
 	string directory =
 		XgConstant::WORK_SPACE + XgConstant::MODEL_DIRECTORY;
@@ -12,7 +12,7 @@ XgDataObjectTexture::XgDataObjectTexture(string objectFormatFile) : XgData()
 	loadTinyObj(directory + objectFormatFile);
 }
 
-XgDataObjectTexture::~XgDataObjectTexture()
+XgObjectMesh::~XgObjectMesh()
 {
 	
 }
@@ -20,7 +20,7 @@ XgDataObjectTexture::~XgDataObjectTexture()
 /*****************************************************************************
 formatData() - Creates the object vao
 *****************************************************************************/
-void XgDataObjectTexture::dataFormat()
+void XgObjectMesh::dataFormat()
 {
 	// Create a vao, vbo and ebo buffers
 	//----------------------------------
@@ -59,13 +59,13 @@ void XgDataObjectTexture::dataFormat()
 
 	// note that this is allowed, the call to glVertexAttribPointer registered VBO 
 	// as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 /*****************************************************************************
 drawObject() - Creates the object vao
 *****************************************************************************/
-void XgDataObjectTexture::drawObject()
+void XgObjectMesh::drawObject()
 {
 	glBindVertexArray(vao); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 
@@ -77,7 +77,7 @@ void XgDataObjectTexture::drawObject()
 /*****************************************************************************
 deAllocateData() - Creates the object vao
 *****************************************************************************/
-void XgDataObjectTexture::deAllocate()
+void XgObjectMesh::deAllocate()
 {
 	// optional: de-allocate all resources once they've outlived their purpose:
 	// ------------------------------------------------------------------------

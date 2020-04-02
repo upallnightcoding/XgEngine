@@ -7,43 +7,34 @@ layout (location = 3) in vec3 aColor;
 
 uniform mat4 u_Transform;
 uniform mat4 u_View;
-uniform mat4 u_Projection;
-
-uniform mat4 DepthBiasMVP;
+uniform mat4 u_Projection; 
 
 out vec3 Normal;
 out vec2 TexCoord;
 out vec3 FragPos;
-out vec4 ShadowCoord;
 
 void main()
 {
    gl_Position = u_Projection * u_View * u_Transform * vec4(aPosition, 1.0);
    
+   //Normal = aNormal;
    Normal = vec3(u_Transform * vec4(aNormal, 1.0));
    TexCoord = aTexCoord;
    FragPos = vec3(u_Transform * vec4(aPosition, 1.0));
-   ShadowCoord = DepthBiasMVP * vec4(aPosition, 1.0);
 }
 @
 #version 330 core
 
 uniform vec4 u_Color;
 uniform vec3 u_ViewPosition;
+uniform sampler2D u_Texture;
 
 uniform vec3 u_LightPosition;
 uniform vec3 u_LightColor;
 
-uniform vec3 u_AmbientColor;
-uniform float u_AmbientStrength;
-
-uniform sampler2D u_Texture;
-uniform sampler2DShadow shadowMap;
-
 in vec3 Normal;
 in vec2 TexCoord;
 in vec3 FragPos;
-in vec4 ShadowCoord;
 
 out vec4 FragColor;
 
@@ -72,15 +63,9 @@ void main()
 	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 30.0);
 	vec3 specularLight = specularStrength * spec * u_LightColor;
 	
-	//float visibility = 1.0;
-	
-	//float visibility = textureProj(shadowMap, ShadowCoord);
-	
-	float visibility = texture( shadowMap, vec3(ShadowCoord.xy, (ShadowCoord.z)/ShadowCoord.w) );
-
 	// Fragment Point Color
 	//---------------------
 	FragColor = 
-		vec4(ambientLight + visibility * (diffuseLight + specularLight), 1.0) *
+		vec4(ambientLight + diffuseLight + specularLight, 1.0) * 
 		texture(u_Texture, TexCoord);
 }

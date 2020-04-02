@@ -2,6 +2,7 @@
 
 #include "Xg.h"
 #include "XgShader.h"
+#include "XgLighting.h"
 
 class XgShadowTexture
 {
@@ -11,10 +12,25 @@ public:
 
 public:
 	void create();
-	void render(vec3 lightPos);
+	void render(XgLighting &light);
+
+	mat4 getLightSpaceMatrix();
+
+	unsigned int depthTexture();
 	
 private:
 	unsigned int depthMapFBO;
-	XgShader *shader;
+	unsigned int pDepthTexture;
+	mat4 pLightSpaceMatrix;
 };
+
+inline mat4 XgShadowTexture::getLightSpaceMatrix()
+{
+	return(pLightSpaceMatrix);
+}
+
+inline unsigned int XgShadowTexture::depthTexture()
+{
+	return(pDepthTexture);
+}
 

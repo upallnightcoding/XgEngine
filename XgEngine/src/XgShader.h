@@ -17,20 +17,20 @@ public:
 
 public:
 	void use();
-	void use(mat4 lightSpaceMatrix);
-	void use(XgScreenSize &screenSize, XgCamera &camera, XgLighting &light, XgTransform &transform);
 	void create();
 
+public:
 	void uniform(string name, vec3 value);
 	void uniform(string name, vec4 value);
 	void uniform(string name, mat4 value);
+	void uniform(string name, int value);
 	
 private:
 	string readShaderFile(const string pathname);
 	int compile(const char *source, GLenum shaderType);
 	void link(int vertexShader, int fragmentShader);
 
-private:
+protected:
 	int shaderProgram;
 	string pathName;
 };

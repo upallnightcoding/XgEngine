@@ -6,7 +6,7 @@ XgObject::XgObject(XgObjectInfo &objectInfo)
 {
 	texture = new XgImageTexture(objectInfo.textureFile);
 	localBehavior = new XgBehavior();
-	data = new XgDataObjectTexture(objectInfo.objectFormatFile);
+	data = new XgObjectMesh(objectInfo.objectFormatFile);
 	framework = NULL;
 }
 

@@ -4,6 +4,18 @@
 
 using namespace std;
 
+/*****************************************************************************
+XgRenderMode - This enum sets the rending mode of the screen.
+*****************************************************************************/
+enum XgRenderMode
+{
+	SHADOW,	// Rendering the scene shadow from the lights POV
+	OBJECT	// Rendering the scene from the POV of the lookAt()
+};
+
+/*****************************************************************************
+XgConstant 
+*****************************************************************************/
 class XgConstant
 {
 public:

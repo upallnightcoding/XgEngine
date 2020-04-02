@@ -2,11 +2,11 @@
 
 #include "Xg.h"
 
-class XgImageTexture
+class XgObjectTexture
 {
 public:
-	XgImageTexture(string texturePath);
-	virtual ~XgImageTexture();
+	XgObjectTexture(string texturePath);
+	virtual ~XgObjectTexture();
 
 	void create();
 	void render();

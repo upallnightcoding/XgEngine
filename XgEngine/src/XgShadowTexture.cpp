@@ -13,14 +13,16 @@ XgShadowTexture::~XgShadowTexture()
 
 void XgShadowTexture::render(XgLighting &light)
 {
+	glBindFramebuffer(GL_FRAMEBUFFER, pDepthMapFBO);
+
 	float nearPlane = 1.0f, farPlane = 7.5f;
 	vec3 lightPos = light.getPosition();
 	
 	mat4 lightProjection = ortho(-10.0f, 10.0f, -10.0f, 10.0f, nearPlane, farPlane);
 	mat4 lightView = lookAt(lightPos, vec3(0.0f), vec3(0.0, 1.0, 0.0));
-	pLightSpaceMatrix = lightProjection * lightView;
+	mat4 depthModelMatrix = mat4(1.0);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
+	pLightSpaceMatrix = lightProjection * lightView * depthModelMatrix;
 }
 
 /******************************************************************************
@@ -28,6 +30,16 @@ create() - Create the actual texture based on texture parameters.
 ******************************************************************************/
 void XgShadowTexture::create()
 {
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+	glEnable(GL_CULL_FACE);
+
+	// Create the frame buffer object
+	//-------------------------------
+	glGenFramebuffers(1, &pDepthMapFBO);
+	glBindFramebuffer(GL_FRAMEBUFFER, pDepthMapFBO);
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, pDepthTexture, 0);
+
 	// Create a depth attachment for the frame buffer object
 	//------------------------------------------------------
 	glGenTextures(1, &pDepthTexture);
@@ -39,18 +51,12 @@ void XgShadowTexture::create()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glBindTexture(GL_TEXTURE_2D, 0);
 
-	// Create the frame buffer object
-	//-------------------------------
-	glGenFramebuffers(1, &depthMapFBO);
-	glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
 	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, pDepthTexture, 0);
 
 	glDrawBuffer(GL_NONE);
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS);
-	glEnable(GL_CULL_FACE);
+
+	//glBindTexture(GL_TEXTURE_2D, 0);
 
 	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
 

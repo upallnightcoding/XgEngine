@@ -4,8 +4,10 @@
 #include "XgTransform.h"
 #include "XgBehavior.h"
 #include "XgShader.h"
-#include "XgImageTexture.h"
+#include "XgObjectTexture.h"
 #include "XgFramework.h"
+
+#include "Xg.h"
 
 class XgObject
 {
@@ -14,7 +16,7 @@ public:
 	virtual ~XgObject();
 
 public:
-	void render(XgShader *shader);
+	void render(XgShader *shader, XgRenderMode mode);
 	void update(float deltaTime);
 	void add(XgAction *action);
 	void add(XgFramework *framework);
@@ -31,7 +33,7 @@ private:
 	XgBehavior *localBehavior;
 	XgFramework *framework;
 
-	XgImageTexture *texture;
+	XgObjectTexture *texture;
 	XgData *data;
 };
 

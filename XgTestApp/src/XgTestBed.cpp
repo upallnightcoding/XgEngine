@@ -136,6 +136,7 @@ XgScene *XgTestBed::backAndForth()
 	sphere->add(framework);
 
 	XgTracker *tracker = new XgTrackerPosition(0.0, 15.0, 5.0);
+	//XgTracker *tracker = new XgTrackerWalkAround(0.1f);
 
 	XgScene *scene = new XgScene();
 	scene->add(floor);

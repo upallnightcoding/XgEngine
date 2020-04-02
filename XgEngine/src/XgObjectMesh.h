@@ -9,7 +9,7 @@ public:
 
 public:
 	virtual void dataFormat();
-	virtual void drawObject();
+	virtual void draw();
 	virtual void deAllocate();
 
 };

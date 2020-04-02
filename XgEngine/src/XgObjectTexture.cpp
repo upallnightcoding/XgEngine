@@ -1,25 +1,25 @@
-#include "XgImageTexture.h"
+#include "XgObjectTexture.h"
 
 #include "Xg.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-XgImageTexture::XgImageTexture(string texturePath)
+XgObjectTexture::XgObjectTexture(string texturePath)
 {
 	this->texturePath = 
 		XgConstant::WORK_SPACE + XgConstant::IMAGE_DIRECTORY + texturePath;
 }
 
 
-XgImageTexture::~XgImageTexture()
+XgObjectTexture::~XgObjectTexture()
 {
 }
 
 /******************************************************************************
 render() -
 ******************************************************************************/
-void XgImageTexture::render()
+void XgObjectTexture::render()
 {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -28,7 +28,7 @@ void XgImageTexture::render()
 /******************************************************************************
 create() - Create the actual texture based on texture parameters.
 ******************************************************************************/
-void XgImageTexture::create()
+void XgObjectTexture::create()
 {
 	// Genertate a texture instance
 	//-----------------------------
@@ -39,7 +39,10 @@ void XgImageTexture::create()
 	readImage();
 }
 
-void XgImageTexture::setTextureParameters()
+/******************************************************************************
+setTextureParameters() -
+******************************************************************************/
+void XgObjectTexture::setTextureParameters()
 {
 	// Bind a named texture to a texturing target
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -56,7 +59,7 @@ void XgImageTexture::setTextureParameters()
 /******************************************************************************
 create() -
 ******************************************************************************/
-void XgImageTexture::readImage()
+void XgObjectTexture::readImage()
 {
 	stbi_set_flip_vertically_on_load(true);
 

@@ -59,8 +59,8 @@ uniform() -
 *****************************************************************************/
 void XgShader::uniform(string name, vec4 colour)
 {
-	int location = glGetUniformLocation(shaderProgram, name.c_str());
-	glUniform4f(location, colour.r, colour.g, colour.b, colour.a);
+	//int location = glGetUniformLocation(shaderProgram, name.c_str());
+	//glUniform4f(location, colour.r, colour.g, colour.b, colour.a);
 }
 
 /*****************************************************************************

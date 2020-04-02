@@ -60,17 +60,17 @@ void XgScene::create(GLFWwindow* window)
 {
 	renderContext = new XgRenderContext();
 
-	generalShader->create();
-
-	shadowShader->create();
-
-	shadowTexture->create();
-
 	camera.create(window);
 
 	for (auto object : objectList) {
 		object->create();
 	}
+
+	shadowTexture->create();
+
+	shadowShader->create();
+
+	generalShader->create();
 }
 
 /*****************************************************************************
@@ -97,7 +97,7 @@ void XgScene::render(XgScreenSize &screenSize, float &deltaTime, int &updates)
 
 	// Render the scene objects and behavior
 	//--------------------------------------
-	renderObjects(generalShader);
+	renderObjects(generalShader, XgRenderMode::OBJECT);
 }
 
 /*****************************************************************************
@@ -122,12 +122,12 @@ void XgScene::updateDeltaTime(float &deltaTime, int &updates)
 renderObjects() - Traverse through each object in the scene and render it
 with the given shader.
 *****************************************************************************/
-void XgScene::renderObjects(XgShader *shader)
+void XgScene::renderObjects(XgShader *shader, XgRenderMode mode)
 {
 	// Render all the objects in the scene
 	//------------------------------------
 	for (auto object : objectList) {
-		object->render(shader);
+		object->render(shader, mode);
 	}
 }
 
@@ -138,19 +138,23 @@ void XgScene::renderShadows()
 {
 	shadowTexture->render(light);
 
-	mat4 lightSpaceMatrix = shadowTexture->getLightSpaceMatrix();
+	glViewport(0, 0, 1024, 1024);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	shadowShader->use();
 
+	mat4 lightSpaceMatrix = shadowTexture->getLightSpaceMatrix();
+
 	shadowShader->uniform("u_LightSpaceMatrix", lightSpaceMatrix);
+	
+	//glClearDepth(1.0f);
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glEnable(GL_POLYGON_OFFSET_FILL);
+	//glPolygonOffset(2.0f, 4.0f);
 
-	glViewport(0, 0, 1024, 1024);
-	glClearDepth(1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glEnable(GL_POLYGON_OFFSET_FILL);
-	glPolygonOffset(2.0f, 4.0f);
-
-	renderObjects(shadowShader);
+	renderObjects(shadowShader, XgRenderMode::SHADOW);
 
 	glDisable(GL_POLYGON_OFFSET_FILL);
 }
@@ -163,6 +167,10 @@ void XgScene::useGeneralShader(XgScreenSize &screenSize)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	screenSize.viewPort();
+
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK); 
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	generalShader->use();
 

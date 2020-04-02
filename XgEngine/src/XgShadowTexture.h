@@ -19,7 +19,7 @@ public:
 	unsigned int depthTexture();
 	
 private:
-	unsigned int depthMapFBO;
+	unsigned int pDepthMapFBO;
 	unsigned int pDepthTexture;
 	mat4 pLightSpaceMatrix;
 };

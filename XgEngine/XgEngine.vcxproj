@@ -152,7 +152,7 @@
     <ClInclude Include="src\XgBehavior.h" />
     <ClInclude Include="src\XgActionSpin.h" />
     <ClInclude Include="src\XgConstant.h" />
-    <ClInclude Include="src\XgImageTexture.h" />
+    <ClInclude Include="src\XgObjectTexture.h" />
     <ClInclude Include="src\XgCamera.h" />
     <ClInclude Include="src\XgTracker.h" />
     <ClInclude Include="src\XgTrackerCircle.h" />
@@ -169,7 +169,7 @@
     <ClInclude Include="src\XgLightPosition.h" />
     <ClInclude Include="src\XgPerlin.h" />
     <ClInclude Include="src\XgGenericData.h" />
-    <ClInclude Include="src\XgDataObjectTexture.h" />
+    <ClInclude Include="src\XgObjectMesh.h" />
     <ClInclude Include="src\XgActionMove.h" />
     <ClInclude Include="src\XgEvent.h" />
     <ClInclude Include="src\XgEventFrames.h" />
@@ -197,7 +197,7 @@
     <ClCompile Include="src\XgBehavior.cpp" />
     <ClCompile Include="src\XgActionSpin.cpp" />
     <ClCompile Include="src\XgConstant.cpp" />
-    <ClCompile Include="src\XgImageTexture.cpp" />
+    <ClCompile Include="src\XgObjectTexture.cpp" />
     <ClCompile Include="src\XgCamera.cpp" />
     <ClCompile Include="src\XgTracker.cpp" />
     <ClCompile Include="src\XgTrackerCircle.cpp" />
@@ -214,7 +214,7 @@
     <ClCompile Include="src\XgLightPosition.cpp" />
     <ClCompile Include="src\XgPerlin.cpp" />
     <ClCompile Include="src\XgGenericData.cpp" />
-    <ClCompile Include="src\XgDataObjectTexture.cpp" />
+    <ClCompile Include="src\XgObjectMesh.cpp" />
     <ClCompile Include="src\XgActionMove.cpp" />
     <ClCompile Include="src\XgEvent.cpp" />
     <ClCompile Include="src\XgEventFrames.cpp" />

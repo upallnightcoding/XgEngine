@@ -32,7 +32,7 @@ public:
 private:
 	void useGeneralShader(XgScreenSize &screenSize);
 	void renderShadows();
-	void renderObjects(XgShader *shader);
+	void renderObjects(XgShader *shader, XgRenderMode mode);
 	void updateDeltaTime(float &deltaTime, int &updates);
 
 private:

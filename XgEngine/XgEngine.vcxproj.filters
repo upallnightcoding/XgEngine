@@ -120,9 +120,6 @@
     <ClCompile Include="src\XgData.cpp">
       <Filter>xg\data</Filter>
     </ClCompile>
-    <ClCompile Include="src\XgDataObjectTexture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\XgFramework.cpp">
       <Filter>xg\framework</Filter>
     </ClCompile>
@@ -174,11 +171,14 @@
     <ClCompile Include="src\XgShadowTexture.cpp">
       <Filter>xg\texture</Filter>
     </ClCompile>
-    <ClCompile Include="src\XgImageTexture.cpp">
-      <Filter>xg\texture</Filter>
-    </ClCompile>
     <ClCompile Include="src\XgShader.cpp">
       <Filter>xg\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgObjectMesh.cpp">
+      <Filter>xg\object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgObjectTexture.cpp">
+      <Filter>xg\texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -263,9 +263,6 @@
     <ClInclude Include="src\XgData.h">
       <Filter>xg\data</Filter>
     </ClInclude>
-    <ClInclude Include="src\XgDataObjectTexture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\XgFramework.h">
       <Filter>xg\framework</Filter>
     </ClInclude>
@@ -317,11 +314,14 @@
     <ClInclude Include="src\XgShadowTexture.h">
       <Filter>xg\texture</Filter>
     </ClInclude>
-    <ClInclude Include="src\XgImageTexture.h">
-      <Filter>xg\texture</Filter>
-    </ClInclude>
     <ClInclude Include="src\XgShader.h">
       <Filter>xg\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgObjectMesh.h">
+      <Filter>xg\object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgObjectTexture.h">
+      <Filter>xg\texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

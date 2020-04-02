@@ -1,10 +1,10 @@
 #include "XgObject.h"
 
-#include "XgDataObjectTexture.h"
+#include "XgObjectMesh.h"
 
 XgObject::XgObject(XgObjectInfo &objectInfo)
 {
-	texture = new XgImageTexture(objectInfo.textureFile);
+	texture = new XgObjectTexture(objectInfo.textureFile);
 	localBehavior = new XgBehavior();
 	data = new XgObjectMesh(objectInfo.objectFormatFile);
 	framework = NULL;
@@ -32,14 +32,16 @@ XgObject::~XgObject()
 /*****************************************************************************
 render() -
 *****************************************************************************/
-void XgObject::render(XgShader *shader)
+void XgObject::render(XgShader *shader, XgRenderMode mode)
 {
 	shader->uniform(XgConstant::U_OBJECT_COLOR, transform.getColour());
 	shader->uniform(XgConstant::U_OBJECT_TRANSFORM, transform.getTransformMatrix());
 
-	texture->render();
+	if (mode == XgRenderMode::OBJECT) {
+		texture->render();
+	}
 
-	data->drawObject();
+	data->draw();
 }
 
 /*****************************************************************************

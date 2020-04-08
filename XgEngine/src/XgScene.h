@@ -5,7 +5,7 @@
 #include "XgObject.h"
 #include "XgShader.h"
 #include "XgCamera.h"
-#include "XgShadowTexture.h"
+#include "XgShadow.h"
 
 /*****************************************************************************
 classs XgScene
@@ -31,7 +31,6 @@ public:
 
 private:
 	void useGeneralShader(XgScreenSize &screenSize);
-	void renderShadows();
 	void renderObjects(XgShader *shader, XgRenderMode mode);
 	void updateDeltaTime(float &deltaTime, int &updates);
 
@@ -39,12 +38,45 @@ private:
 	vector<XgObject*> objectList;
 	XgCamera camera;
 	XgLighting light;
-	XgShader *generalShader;
-	XgShader *shadowShader;
-
-	XgShadowTexture *shadowTexture;
-
+	XgShader *shader;
+	XgShadow *shadow;
+	XgShader *depthTest;
 	XgRenderContext *renderContext;
 };
 
+inline void XgScene::setLightPosition(float x, float y, float z)
+{
+	light.setPosition(x, y, z);
+}
 
+/*****************************************************************************
+setCameraPosition()
+*****************************************************************************/
+inline void XgScene::setCameraPosition(float x, float y, float z)
+{
+	camera.setPosition(x, y, z);
+}
+
+/*****************************************************************************
+add()
+*****************************************************************************/
+inline void XgScene::add(XgObject *object)
+{
+	objectList.push_back(object);
+}
+
+/*****************************************************************************
+add()
+*****************************************************************************/
+inline void XgScene::add(XgTracker *track)
+{
+	camera.add(track);
+}
+
+/*****************************************************************************
+add()
+*****************************************************************************/
+inline void XgScene::add(XgLight *rail)
+{
+	light.add(rail);
+}

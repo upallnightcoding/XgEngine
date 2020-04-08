@@ -87,6 +87,12 @@ void XgShader::uniform(string name, int value)
 	glUniform1i(location, value);
 }
 
+void XgShader::uniform(string name, float value)
+{
+	int location = glGetUniformLocation(shaderProgram, name.c_str());
+	glUniform1f(location, value);
+}
+
 /*****************************************************************************
 link() -
 *****************************************************************************/

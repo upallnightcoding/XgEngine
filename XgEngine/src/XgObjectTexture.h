@@ -11,6 +11,8 @@ public:
 	void create();
 	void render();
 
+	unsigned int getTexture();
+
 private:
 	void readImage();
 	void setTextureParameters();
@@ -20,3 +22,7 @@ private:
 	string texturePath;
 };
 
+inline unsigned int XgObjectTexture::getTexture()
+{
+	return(texture);
+}

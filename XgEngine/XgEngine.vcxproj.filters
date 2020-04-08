@@ -49,6 +49,9 @@
     <Filter Include="xg\shader">
       <UniqueIdentifier>{eba629ba-e903-4b7c-8502-0f6bd6f94f6a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="xg2">
+      <UniqueIdentifier>{034e2ec0-2720-4ba6-a24e-abf1b0ecb951}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\XgProgram.cpp">
@@ -168,9 +171,6 @@
     <ClCompile Include="src\XgLightTrack.cpp">
       <Filter>xg\light</Filter>
     </ClCompile>
-    <ClCompile Include="src\XgShadowTexture.cpp">
-      <Filter>xg\texture</Filter>
-    </ClCompile>
     <ClCompile Include="src\XgShader.cpp">
       <Filter>xg\shader</Filter>
     </ClCompile>
@@ -179,6 +179,24 @@
     </ClCompile>
     <ClCompile Include="src\XgObjectTexture.cpp">
       <Filter>xg\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgShadow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgPixel.cpp">
+      <Filter>xg2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgPaper.cpp">
+      <Filter>xg2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgSprite.cpp">
+      <Filter>xg2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgFlipBook.cpp">
+      <Filter>xg2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -311,9 +329,6 @@
     <ClInclude Include="src\XgLightTrack.h">
       <Filter>xg\light</Filter>
     </ClInclude>
-    <ClInclude Include="src\XgShadowTexture.h">
-      <Filter>xg\texture</Filter>
-    </ClInclude>
     <ClInclude Include="src\XgShader.h">
       <Filter>xg\shader</Filter>
     </ClInclude>
@@ -322,6 +337,24 @@
     </ClInclude>
     <ClInclude Include="src\XgObjectTexture.h">
       <Filter>xg\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgShadow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgPixel.h">
+      <Filter>xg2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgPaper.h">
+      <Filter>xg2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgSprite.h">
+      <Filter>xg2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgFlipBook.h">
+      <Filter>xg2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

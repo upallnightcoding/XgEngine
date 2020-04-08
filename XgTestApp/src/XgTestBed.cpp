@@ -15,13 +15,15 @@
 #include "XgActionNegDirection.h"
 #include "XgEventGoto.h"
 
-const string WALL_IMAGE = "wall.jpg";
-const string SUNSET_IMAGE = "sunset.jpg";
-const string STRIPES_IMAGE = "stripes.jpg";
-const string GRASS_IMAGE = "grass.jpg";
-const string WHITE_IMAGE = "white.jpg";
-const string NUKEM_IMAGE = "nukem.jpg";
-const string BLUE_IMAGE = "blue.jpg";
+string WALL_IMAGE = "wall.jpg";
+string SUNSET_IMAGE = "sunset.jpg";
+string STRIPES_IMAGE = "stripes.jpg";
+string GRASS_IMAGE = "grass.jpg";
+string WHITE_IMAGE = "white.jpg";
+string NUKEM_IMAGE = "nukem.jpg";
+string BLUE_IMAGE = "blue.jpg";
+string CONTAINER_IMAGE = "container.jpg";
+string PENGUIN_IMAGE = "penguin.jpg";
 
 XgTestBed::XgTestBed()
 {
@@ -56,6 +58,52 @@ XgScene *XgTestBed::spinningSphere()
 	scene->add(sphere);
 	scene->add(tracker);
 	scene->add(light);
+
+	// (6) Return the scene object to the caller
+	//------------------------------------------
+	return(scene);
+}
+
+XgScene *XgTestBed::displayNineSpheres()
+{
+	// Contain the pathnames of the textures
+	//--------------------------------------
+	string images[] = { 
+		WALL_IMAGE, SUNSET_IMAGE, STRIPES_IMAGE,
+		GRASS_IMAGE, WHITE_IMAGE, NUKEM_IMAGE,
+		BLUE_IMAGE, CONTAINER_IMAGE, PENGUIN_IMAGE
+	};
+
+	// Define the static light source
+	//-------------------------------
+	XgLight *light = new XgLightPosition(0.0, 20.0, 0.0);
+
+	// Define the static camera position
+	//----------------------------------
+	XgTracker *tracker = new XgTrackerWalkAround(0.1f);
+
+	// Create the object factory
+	//--------------------------
+	XgObjectFactory objectFactory;
+
+	// Create the scene object
+	//------------------------
+	XgScene *scene = new XgScene();
+	scene->add(light);
+	scene->add(tracker);
+
+	float delta = 3.0;
+	int image = 0;
+
+	// Create the spheres and add them to the scene
+	//---------------------------------------------
+	for (float x = -delta; x <= delta; x += delta) {
+		for (float y = -delta; y <= delta; y += delta) {
+			XgObject *sphere = objectFactory.sphere(images[image++]);
+			sphere->move(x, y, 0.0);
+			scene->add(sphere);
+		}
+	}
 
 	return(scene);
 }
@@ -139,8 +187,8 @@ XgScene *XgTestBed::backAndForth()
 	//XgTracker *tracker = new XgTrackerWalkAround(0.1f);
 
 	XgScene *scene = new XgScene();
-	scene->add(floor);
 	scene->add(sphere);
+	scene->add(floor);
 	scene->add(tracker);
 	scene->add(new XgLightTrack());
 

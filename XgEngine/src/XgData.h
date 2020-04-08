@@ -25,7 +25,7 @@ public:
 
 public:
 	virtual void dataFormat() = 0;
-	virtual void draw() = 0;
+	virtual void draw(XgRenderMode mode) = 0;
 	virtual void deAllocate() = 0;
 
 	void loadObj(string pathName);

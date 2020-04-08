@@ -24,6 +24,7 @@ public:
 	void uniform(string name, vec4 value);
 	void uniform(string name, mat4 value);
 	void uniform(string name, int value);
+	void uniform(string name, float value);
 	
 private:
 	string readShaderFile(const string pathname);

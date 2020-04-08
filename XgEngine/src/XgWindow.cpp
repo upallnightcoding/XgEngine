@@ -105,7 +105,7 @@ int XgWindow::startAnimation()
 
 	float lastTime = (float) glfwGetTime(), timer = lastTime;
 	float deltaTime = 0, nowTime = 0;
-	int frames = 0, updates = 0;
+	int tickCount = 0, fps = 0;
 
 	// Main Render Loop
 	// ----------------
@@ -124,20 +124,22 @@ int XgWindow::startAnimation()
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		renderScreen(deltaTime, updates);
+		renderScreen(deltaTime, fps);
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 
-		frames++;
+		tickCount++;
 
 		// - Reset after one second
-		if (glfwGetTime() - timer > 1.0) {
-			timer++;
-			std::cout << "FPS: " << frames << " Updates:" << updates << std::endl;
-			updates = 0, frames = 0;
+		//if (glfwGetTime() - timer > 1.0) {
+		if (nowTime - timer > 1.0) {
+			//timer++;
+			timer = nowTime;
+			std::cout << "Ticks: " << tickCount << " FPS:" << fps << std::endl;
+			fps = 0; tickCount = 0;
 		}
 	}
 

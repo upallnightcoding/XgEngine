@@ -179,7 +179,12 @@
     <ClInclude Include="src\XgScreenSize.h" />
     <ClInclude Include="src\XgRenderContext.h" />
     <ClInclude Include="src\XgCameraTelemetry.h" />
-    <ClInclude Include="src\XgShadowTexture.h" />
+    <ClInclude Include="src\XgShadow.h" />
+    <ClInclude Include="src\XgPixel.h" />
+    <ClInclude Include="src\XgSprite.h" />
+    <ClInclude Include="src\XgPoint.h" />
+    <ClInclude Include="src\XgPaper.h" />
+    <ClInclude Include="src\XgFlipBook.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\XgEngine.cpp" />
@@ -224,7 +229,12 @@
     <ClCompile Include="src\XgScreenSize.cpp" />
     <ClCompile Include="src\XgRenderContext.cpp" />
     <ClCompile Include="src\XgCameraTelemetry.cpp" />
-    <ClCompile Include="src\XgShadowTexture.cpp" />
+    <ClCompile Include="src\XgShadow.cpp" />
+    <ClCompile Include="src\XgPixel.cpp" />
+    <ClCompile Include="src\XgSprite.cpp" />
+    <ClCompile Include="src\XgPoint.cpp" />
+    <ClCompile Include="src\XgPaper.cpp" />
+    <ClCompile Include="src\XgFlipBook.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

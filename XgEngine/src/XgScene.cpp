@@ -1,56 +1,65 @@
 #include "XgScene.h"
 
+float planeVertices[] = {
+	// positions            // normals         // texcoords
+	 25.0f, -0.5f,  25.0f,  0.0f, 1.0f, 0.0f,  25.0f,  0.0f,
+	-25.0f, -0.5f,  25.0f,  0.0f, 1.0f, 0.0f,   0.0f,  0.0f,
+	-25.0f, -0.5f, -25.0f,  0.0f, 1.0f, 0.0f,   0.0f, 25.0f,
+
+	 25.0f, -0.5f,  25.0f,  0.0f, 1.0f, 0.0f,  25.0f,  0.0f,
+	-25.0f, -0.5f, -25.0f,  0.0f, 1.0f, 0.0f,   0.0f, 25.0f,
+	 25.0f, -0.5f, -25.0f,  0.0f, 1.0f, 0.0f,  25.0f, 25.0f
+};
+
+unsigned int quadVAO = 0;
+unsigned int quadVBO;
+
+void renderQuad(unsigned int depthMap)
+{
+	if (quadVAO == 0)
+	{
+		float quadVertices[] = {
+			// positions        // texture Coords
+			-2.0f,  2.0f, -2.0f, 0.0f, 1.0f,
+			-2.0f, -2.0f, -2.0f, 0.0f, 0.0f,
+			 2.0f,  2.0f, -2.0f, 1.0f, 1.0f,
+			 2.0f, -2.0f, -2.0f, 1.0f, 0.0f,
+		};
+
+		// setup plane VAO
+		glGenVertexArrays(1, &quadVAO);
+		glGenBuffers(1, &quadVBO);
+		glBindVertexArray(quadVAO);
+		glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	}
+
+	glBindVertexArray(quadVAO);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, depthMap);
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+	glBindVertexArray(0);
+}
+
 XgScene::XgScene()
 {
-	generalShader = new XgShader("GeneralVertext.shader");
-	shadowShader = new XgShader("ShadowMap.shader");
-	shadowTexture = new XgShadowTexture();
+	shader = new XgShader("GeneralShader.shader");
+	shadow = new XgShadow();
+	depthTest = new XgShader("DepthMap.shader");
+
 }
 
 XgScene::~XgScene()
 {
-	delete generalShader;
+	delete shader;
 
-	delete shadowShader;
+	delete shadow;
 
-	delete shadowTexture;
-}
-
-void XgScene::setLightPosition(float x, float y, float z)
-{
-	light.setPosition(x, y, z);
-}
-
-/*****************************************************************************
-setCameraPosition()
-*****************************************************************************/
-void XgScene::setCameraPosition(float x, float y, float z)
-{
-	camera.setPosition(x, y, z);
-}
-
-/*****************************************************************************
-add()
-*****************************************************************************/
-void XgScene::add(XgObject *object)
-{
-	objectList.push_back(object);
-}
-
-/*****************************************************************************
-add()
-*****************************************************************************/
-void XgScene::add(XgTracker *track)
-{
-	camera.add(track);
-}
-
-/*****************************************************************************
-add()
-*****************************************************************************/
-void XgScene::add(XgLight *rail)
-{
-	light.add(rail);
+	delete depthTest;
 }
 
 /*****************************************************************************
@@ -66,11 +75,11 @@ void XgScene::create(GLFWwindow* window)
 		object->create();
 	}
 
-	shadowTexture->create();
+	shadow->create();
 
-	shadowShader->create();
+	shader->create();
 
-	generalShader->create();
+	depthTest->create();
 }
 
 /*****************************************************************************
@@ -89,7 +98,14 @@ void XgScene::render(XgScreenSize &screenSize, float &deltaTime, int &updates)
 	//--------------------------------------------------------------
 	updateDeltaTime(deltaTime, updates);
 
-	renderShadows();
+	// Render the scene shadow
+	//------------------------
+	//shadow->render(light);
+
+	// Render the scene shadow texture
+	//--------------------------------
+	//renderObjects(shadow->getShader(), XgRenderMode::SHADOW);
+	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	// Use the general shader for render the scene
 	//--------------------------------------------
@@ -97,7 +113,14 @@ void XgScene::render(XgScreenSize &screenSize, float &deltaTime, int &updates)
 
 	// Render the scene objects and behavior
 	//--------------------------------------
-	renderObjects(generalShader, XgRenderMode::OBJECT);
+	renderObjects(shader, XgRenderMode::OBJECT);
+
+	//shadow->getShader()->use();
+	//debugDepthQuad.setFloat("near_plane", near_plane);
+	//debugDepthQuad.setFloat("far_plane", far_plane);
+	//glActiveTexture(GL_TEXTURE0);
+	//glBindTexture(GL_TEXTURE_2D, shadow->depthTexture());
+	//renderQuad();
 }
 
 /*****************************************************************************
@@ -132,47 +155,17 @@ void XgScene::renderObjects(XgShader *shader, XgRenderMode mode)
 }
 
 /*****************************************************************************
-useShadowShader()
-*****************************************************************************/
-void XgScene::renderShadows()
-{
-	shadowTexture->render(light);
-
-	glViewport(0, 0, 1024, 1024);
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	shadowShader->use();
-
-	mat4 lightSpaceMatrix = shadowTexture->getLightSpaceMatrix();
-
-	shadowShader->uniform("u_LightSpaceMatrix", lightSpaceMatrix);
-	
-	//glClearDepth(1.0f);
-	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//glEnable(GL_POLYGON_OFFSET_FILL);
-	//glPolygonOffset(2.0f, 4.0f);
-
-	renderObjects(shadowShader, XgRenderMode::SHADOW);
-
-	glDisable(GL_POLYGON_OFFSET_FILL);
-}
-
-/*****************************************************************************
 useGeneralShader()
 *****************************************************************************/
 void XgScene::useGeneralShader(XgScreenSize &screenSize)
 {
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	screenSize.viewPort();
+	
 
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK); 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	generalShader->use();
+	//glEnable(GL_CULL_FACE);
+	//glCullFace(GL_BACK); 
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	mat4 biasMatrix(
 		0.5, 0.0, 0.0, 0.0,
@@ -181,30 +174,57 @@ void XgScene::useGeneralShader(XgScreenSize &screenSize)
 		0.5, 0.5, 0.5, 1.0
 	);
 
-	mat4 depthBiasMVP = biasMatrix * shadowTexture->getLightSpaceMatrix();
+	mat4 depthBiasMVP = biasMatrix * shadow->getLightSpaceMatrix();
 
 	//glActiveTexture(GL_TEXTURE0);
 	//glBindTexture(GL_TEXTURE_2D, Texture);
 	// Set our "myTextureSampler" sampler to use Texture Unit 0
 	//glUniform1i(TextureID, 0);
-	generalShader->uniform("u_Texture", 0);
-
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, shadowTexture->depthTexture());
+	
+	//glActiveTexture(GL_TEXTURE1);
+	//glBindTexture(GL_TEXTURE_2D, shadowTexture->depthTexture());
 	//glUniform1i(ShadowMapID, 1);
-	generalShader->uniform("shadowMap", 1);
 
-	generalShader->uniform("DepthBiasMVP", depthBiasMVP);
+	screenSize.viewPort();
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	generalShader->uniform(XgConstant::U_PROJECT, screenSize.getPerspective());
+	depthTest->use();
+	depthTest->uniform("depthMap", 0);
+	depthTest->uniform("near_plane", 0.1f);
+	depthTest->uniform("far_plane", 100.0f);
 
+	renderQuad(shadow->depthTexture());
+	
+	shader->use();
+	//shader->uniform("u_Texture", 0);
+	//shader->uniform("shadowMap", 1);
+	//shader->uniform("DepthBiasMVP", depthBiasMVP);
+
+	shader->uniform("projection", screenSize.getPerspective());
+	shader->uniform("view", camera.getView());
+	shader->uniform("lightSpaceMatrix", shadow->getLightSpaceMatrix());
+	shader->uniform("diffuseTexture", 0);
+	shader->uniform("shadowMap", 1);
+	//shader->uniform("lightPos", screenSize.getPerspective() * camera.getView() * vec4(light.position(), 1.0));
+	shader->uniform("lightPos", light.position());
+	shader->uniform("viewPos", camera.getPosition());
+
+	//shader->uniform(XgConstant::U_PROJECT, screenSize.getPerspective());
+	
 	// Define Light Telemetry
 	//-----------------------
-	generalShader->uniform(XgConstant::U_LIGHT_COLOR, light.getColour());
-	generalShader->uniform(XgConstant::U_LIGHT_POSITION, light.getPosition());
+	//shader->uniform(XgConstant::U_LIGHT_COLOR, light.colour());
+	//shader->uniform(XgConstant::U_LIGHT_POSITION, light.position());
 
 	// Define Camera Telemetry
 	//------------------------
-	generalShader->uniform(XgConstant::U_CAMERA_POSITION, camera.getPosition());
-	generalShader->uniform(XgConstant::U_CAMERA_VIEW, camera.getView());
+	//shader->uniform(XgConstant::U_CAMERA_POSITION, camera.getPosition());
+	//shader->uniform(XgConstant::U_CAMERA_VIEW, camera.getView());
+
+	//glActiveTexture(GL_TEXTURE0);
+	//glBindTexture(GL_TEXTURE_2D, woodTexture);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, shadow->depthTexture());
+
+	
 }

@@ -34,14 +34,15 @@ render() -
 *****************************************************************************/
 void XgObject::render(XgShader *shader, XgRenderMode mode)
 {
-	shader->uniform(XgConstant::U_OBJECT_COLOR, transform.getColour());
-	shader->uniform(XgConstant::U_OBJECT_TRANSFORM, transform.getTransformMatrix());
+	//shader->uniform(XgConstant::U_OBJECT_COLOR, transform.getColour());
+	//shader->uniform(XgConstant::U_OBJECT_TRANSFORM, transform.getTransformMatrix());
+	shader->uniform("model", transform.getTransformMatrix());
 
 	if (mode == XgRenderMode::OBJECT) {
 		texture->render();
 	}
 
-	data->draw();
+	data->draw(mode);
 }
 
 /*****************************************************************************

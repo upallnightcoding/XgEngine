@@ -9,7 +9,7 @@ public:
 
 public:
 	virtual void dataFormat();
-	virtual void draw();
+	virtual void draw(XgRenderMode mode);
 	virtual void deAllocate();
 
 };

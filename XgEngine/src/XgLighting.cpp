@@ -4,8 +4,8 @@
 
 XgLighting::XgLighting()
 {
-	position = vec3(0.0, 0.0, 0.0);
-	colour = vec3(1.0);
+	pPosition = vec3(0.0, 0.0, 0.0);
+	pColour = vec3(1.0);
 }
 
 
@@ -29,7 +29,7 @@ update() -
 void XgLighting::update()
 {
 	for (auto rail : rails) {
-		rail->update(position, colour);
+		rail->update(pPosition, pColour);
 	}
 }
 
@@ -38,23 +38,8 @@ update() -
 *****************************************************************************/
 void XgLighting::setPosition(float x, float y, float z)
 {
-	position.x = x;
-	position.y = y;
-	position.z = z;
+	pPosition.x = x;
+	pPosition.y = y;
+	pPosition.z = z;
 }
 
-/*****************************************************************************
-getColour() -
-*****************************************************************************/
-vec3 XgLighting::getColour()
-{
-	return(colour);
-}
-
-/*****************************************************************************
-getPosition() -
-*****************************************************************************/
-vec3 XgLighting::getPosition()
-{
-	return(position);
-}

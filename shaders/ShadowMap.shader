@@ -1,4 +1,5 @@
 #version 330 core
+
 layout (location = 0) in vec3 aPosition;
 
 uniform mat4 u_LightSpaceMatrix;
@@ -11,9 +12,9 @@ void main()
 @
 #version 330 core
 
-layout (location = 0) out float fragmentDepth;
+//layout (location = 0) out float fragmentDepth;
 
 void main()
 {             
-    fragmentDepth = gl_FragCoord.z;
+    //fragmentDepth = gl_FragCoord.z;
 }  

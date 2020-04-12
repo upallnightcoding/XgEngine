@@ -4,37 +4,59 @@
 
 XgPaper::XgPaper()
 {
-	shader = new XgShader("sprite.shader");
+	
 }
 
 
 XgPaper::~XgPaper()
 {
-	delete shader;
+	
 }
 
 /*****************************************************************************
 animate()
 *****************************************************************************/
-void XgPaper::animate()
+void XgPaper::animate(XgShader *shader)
 {
 	// Animate all sprites that are on the paper
 	//------------------------------------------
 	for (auto sprite : spriteList) {
-		sprite->draw();
+		sprite->draw(shader);
 	}
 
 	// Animate all flipbooks that are on the paper
 	//--------------------------------------------
 	for (auto flipBook : flipBookList) {
-		flipBook->animate();
+		flipBook->animate(shader);
+	}
+
+	// Animate all entities that are on the paper
+	//-------------------------------------------
+	for (auto entity : entityList) {
+		entity->animate(shader);
+	}
+}
+
+/*****************************************************************************
+update() -
+*****************************************************************************/
+void XgPaper::update(float deltaTime)
+{
+	// Animate all entities that are on the paper
+	//-------------------------------------------
+	for (auto entity : entityList) {
+		entity->update(deltaTime);
+	}
+
+	for (auto sprite : spriteList) {
+		sprite->update(deltaTime);
 	}
 }
 
 /*****************************************************************************
 create() -
 *****************************************************************************/
-void XgPaper::create()
+void XgPaper::create(GLFWwindow* window)
 {
 	for (auto sprite : spriteList) {
 		sprite->create();
@@ -44,7 +66,8 @@ void XgPaper::create()
 		flipBook->create();
 	}
 
-	shader->create();
+	for (auto entity : entityList) {
+		entity->create();
+	}
 
-	shader->use();
 }

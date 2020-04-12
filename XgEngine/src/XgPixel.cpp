@@ -1,16 +1,19 @@
 #include "XgPixel.h"
 
+extern XgKeyboardEvent keyboardEvent;
 
 
 XgPixel::XgPixel(int screenWidth, int screenHeight)
 	: XgWindow(screenWidth, screenHeight)
 {
-	camera.setPosition(0.0, 0.0, -50.0);
+	shader = new XgShader("sprite.shader");
 }
 
 XgPixel::~XgPixel()
 {
 	delete paper;
+
+	delete shader;
 }
 
 /*****************************************************************************
@@ -18,9 +21,23 @@ render()
 *****************************************************************************/
 void XgPixel::initRender(GLFWwindow* window)
 {
+	paper->create(window);
+
+	camera.setPosition(5.0);
+
 	camera.create(window);
 
-	paper->create();
+	shader->create();
+
+	shader->use();
+
+	shader->uniform("u_View", camera.getView());
+
+	shader->uniform("u_Projection", screenSize->getPerspective());
+
+	renderContext = new XgRenderContext();
+
+	renderContext->setKeyboardEvent(&keyboardEvent);
 }
 
 /*****************************************************************************
@@ -30,7 +47,7 @@ void XgPixel::renderScreen(float &deltaTime, int &updates)
 {
 	updateDeltaTime(deltaTime, updates);
 
-	paper->animate();
+	paper->animate(shader);
 }
 
 /*****************************************************************************
@@ -58,6 +75,8 @@ void XgPixel::updateDeltaTime(float &deltaTime, int &fps)
 		//camera.update(renderContext);
 		//light.update();
 
+		paper->update(deltaTime);
+
 		//for (auto object : objectList) {
 			//object->update(deltaTime);
 		//}
@@ -65,4 +84,11 @@ void XgPixel::updateDeltaTime(float &deltaTime, int &fps)
 		fps++;
 		deltaTime--;
 	}
+
+	//float lag = deltaTime;
+	//while (lag >= (1.0 / 60.0))
+	//{
+		
+		//lag -= (1.0/ 60.0);
+	//}
 }

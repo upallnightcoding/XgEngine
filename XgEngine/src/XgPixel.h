@@ -22,7 +22,11 @@ private:
 	void updateDeltaTime(float &deltaTime, int &updates);
 
 private:
-	XgCamera camera;
 	XgPaper *paper;
+	XgCamera camera;
+
+	XgShader *shader;
+
+	XgRenderContext *renderContext;
 };
 

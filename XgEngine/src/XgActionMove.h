@@ -4,6 +4,7 @@ class XgActionMove :
 	public XgAction
 {
 public:
+	XgActionMove(float dx, float dy);
 	XgActionMove(float dx, float dy, float dz);
 	virtual ~XgActionMove();
 

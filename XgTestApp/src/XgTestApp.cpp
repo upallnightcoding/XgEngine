@@ -4,6 +4,7 @@
 #include "XgTestBed.h"
 
 #include "XgPixel.h"
+#include "XgActionMove.h"
 
 int xxmain() 
 {
@@ -34,19 +35,24 @@ int main()
 
 	XgPaper *paper = new XgPaper();
 
-	XgFlipBook *flipBook = new XgFlipBook();
-	flipBook->add(new XgSprite("Attack__000.png"));
-	flipBook->add(new XgSprite("Attack__001.png"));
-	flipBook->add(new XgSprite("Attack__002.png"));
-	flipBook->add(new XgSprite("Attack__003.png"));
-	flipBook->add(new XgSprite("Attack__004.png"));
-	flipBook->add(new XgSprite("Attack__005.png"));
-	flipBook->add(new XgSprite("Attack__006.png"));
-	flipBook->add(new XgSprite("Attack__007.png"));
-	flipBook->add(new XgSprite("Attack__008.png"));
-	flipBook->add(new XgSprite("Attack__009.png"));
+	XgFlipBook *attackFlipBook = new XgFlipBook();
+	attackFlipBook->add(new XgSprite("Attack__000.png"));
+	attackFlipBook->add(new XgSprite("Attack__001.png"));
+	attackFlipBook->add(new XgSprite("Attack__002.png"));
+	attackFlipBook->add(new XgSprite("Attack__003.png"));
+	attackFlipBook->add(new XgSprite("Attack__004.png"));
+	attackFlipBook->add(new XgSprite("Attack__005.png"));
+	attackFlipBook->add(new XgSprite("Attack__006.png"));
+	attackFlipBook->add(new XgSprite("Attack__007.png"));
+	attackFlipBook->add(new XgSprite("Attack__008.png"));
+	attackFlipBook->add(new XgSprite("Attack__009.png"));
 
-	paper->add(flipBook);
+	attackFlipBook->add(new XgActionMove(0.01, 0.0, 0.0));
+
+	XgEntity *entity = new XgEntity();
+	entity->add(attackFlipBook);
+
+	paper->add(entity);
 
 	pixel.add(paper);
 

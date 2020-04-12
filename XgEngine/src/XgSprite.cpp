@@ -7,18 +7,23 @@ XgSprite::XgSprite(string texturePath)
 {
 	this->imagePath =
 		XgConstant::WORK_SPACE + XgConstant::IMAGE_DIRECTORY + texturePath;
+
+	updateTransform = true;
 }
 
 XgSprite::~XgSprite()
 {
-	//delete shader;
+	
 }
 
 void XgSprite::create()
 {
-	//shader = new XgShader("sprite.shader");
+	create(true);
+}
 
-	//shader->create();
+void XgSprite::create(bool updateTransform)
+{
+	this->updateTransform = updateTransform;
 
 	dataFormat();
 
@@ -94,9 +99,11 @@ void XgSprite::loadTexture()
 /******************************************************************************
 create() -
 ******************************************************************************/
-void XgSprite::draw()
+void XgSprite::draw(XgShader *shader)
 {
-	//shader->use();
+	if (updateTransform) {
+		shader->uniform("u_Transform", transform.getTransformMatrix());
+	}
 
 	glBindTexture(GL_TEXTURE_2D, texture);
 

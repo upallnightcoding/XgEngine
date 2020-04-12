@@ -22,12 +22,27 @@ public:
 	double xOffset();
 	double yOffSet();
 
+	void setKey(int key, int scancode, int action, int mods);
+
 private:
 	double pMouseXpos;
 	double pMouseYpos;
 	double pXoffset;
 	double pYoffset;
+
+	int key;
+	int scancode;
+	int action;
+	int mods;
 };
+
+inline void XgKeyboardEvent::setKey(int key, int scancode, int action, int mods)
+{
+	this->key = key;
+	this->scancode = scancode;
+	this->action = action;
+	this->mods = mods;
+}
 
 /*****************************************************************************
 getXpos()

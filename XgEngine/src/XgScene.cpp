@@ -1,5 +1,7 @@
 #include "XgScene.h"
 
+extern XgKeyboardEvent keyboardEvent;
+
 float planeVertices[] = {
 	// positions            // normals         // texcoords
 	 25.0f, -0.5f,  25.0f,  0.0f, 1.0f, 0.0f,  25.0f,  0.0f,
@@ -68,6 +70,8 @@ create()
 void XgScene::create(GLFWwindow* window)
 {
 	renderContext = new XgRenderContext();
+
+	renderContext->setKeyboardEvent(&keyboardEvent);
 
 	camera.create(window);
 

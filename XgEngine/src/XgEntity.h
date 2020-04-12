@@ -1,48 +1,51 @@
 #pragma once
 
 #include "Xg.h"
-
-#include "XgSprite.h"
 #include "XgFlipBook.h"
-#include "XgShader.h"
-#include "XgEntity.h"
+#include "XgFramework.h"
 
-class XgPaper
+class XgEntity
 {
 public:
-	XgPaper();
-	virtual ~XgPaper();
+	XgEntity();
+	virtual ~XgEntity();
 
 public:
-	void create(GLFWwindow* window);
-
-	void add(XgSprite *sprite);
-	void add(XgFlipBook *flipBook);
-	void add(XgEntity *entity);
-
 	void animate(XgShader *shader);
+	void create();
 	void update(float deltaTime);
 
+	void add(XgFramework *framework);
+	void add(XgFlipBook *flipBook);
+
 private:
-	vector<XgSprite*> spriteList;
 	vector<XgFlipBook*> flipBookList;
-	vector<XgEntity*> entityList;
+	XgFramework *framework;
+	int flipBook;
 };
 
 /*****************************************************************************
-add()
+add() -
 *****************************************************************************/
-inline void XgPaper::add(XgEntity *entity)
+inline void XgEntity::add(XgFramework *framework)
 {
-	if (entity != NULL) {
-		entityList.push_back(entity);
+	this->framework = framework;
+}
+
+/*****************************************************************************
+create() -
+*****************************************************************************/
+inline void XgEntity::create()
+{
+	for (auto flipBook : flipBookList) {
+		flipBook->create();
 	}
 }
 
 /*****************************************************************************
-add()
+add() - 
 *****************************************************************************/
-inline void XgPaper::add(XgFlipBook *flipBook)
+inline void XgEntity::add(XgFlipBook *flipBook)
 {
 	if (flipBook != NULL) {
 		flipBookList.push_back(flipBook);
@@ -50,12 +53,14 @@ inline void XgPaper::add(XgFlipBook *flipBook)
 }
 
 /*****************************************************************************
-add()
+animate()
 *****************************************************************************/
-inline void XgPaper::add(XgSprite *sprite)
+inline void XgEntity::animate(XgShader *shader)
 {
-	if (sprite != NULL) {
-		spriteList.push_back(sprite);
+	if (flipBook != -1) {
+		flipBookList.at(flipBook)->animate(shader);
 	}
 }
+
+
 

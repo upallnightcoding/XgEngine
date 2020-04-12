@@ -47,14 +47,6 @@ vec3 XgCamera::getPosition()
 }
 
 /******************************************************************************
-setViewPosition() - Sets the camera position
-******************************************************************************/
-void XgCamera::setPosition(float x, float y, float z)
-{
-	telemetry.set(x, y, z);
-}
-
-/******************************************************************************
 update() - Updates the camera eye, center and up vector based on the virtual
 function of the track object.  The "update" function executes each track
 object.  Order of the track objects is based on the a first-in-first-out
@@ -62,6 +54,7 @@ processing rule.
 ******************************************************************************/
 void XgCamera::update(XgRenderContext *context)
 {
+	// TODO This should be placed in the create() function
 	context->cameraTelemetry(&telemetry);
 
 	for (auto track : tracking) {

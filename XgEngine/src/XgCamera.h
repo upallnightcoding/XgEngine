@@ -22,6 +22,7 @@ public:
 
 	vec3 getPosition();
 	void setPosition(float x, float y, float z);
+	void setPosition(float value);
 
 private:
 	XgCameraTelemetry telemetry;
@@ -29,3 +30,18 @@ private:
 	vector<XgTracker*> tracking;
 };
 
+/******************************************************************************
+setPosition() - Sets the camera position
+******************************************************************************/
+inline void XgCamera::setPosition(float x, float y, float z)
+{
+	telemetry.set(x, y, z);
+}
+
+/******************************************************************************
+setPosition() - Sets the camera position
+******************************************************************************/
+inline void XgCamera::setPosition(float value)
+{
+	telemetry.set(0.0, 0.0, value);
+}

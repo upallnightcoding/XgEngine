@@ -19,5 +19,8 @@ protected:
 
 protected:
 	XgScreenSize *screenSize;
+
+private:
+	void renderLoop(GLFWwindow* window);
 };
 

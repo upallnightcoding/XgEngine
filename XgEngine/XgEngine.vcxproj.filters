@@ -198,6 +198,9 @@
     <ClCompile Include="src\XgFlipBook.cpp">
       <Filter>xg2</Filter>
     </ClCompile>
+    <ClCompile Include="src\XgEntity.cpp">
+      <Filter>xg2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XglProgram.h">
@@ -354,6 +357,9 @@
       <Filter>xg2</Filter>
     </ClInclude>
     <ClInclude Include="src\XgFlipBook.h">
+      <Filter>xg2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgEntity.h">
       <Filter>xg2</Filter>
     </ClInclude>
   </ItemGroup>

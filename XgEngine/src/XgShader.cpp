@@ -7,11 +7,11 @@
 
 #include "Xg.h"
 #include "XgConstant.h"
-#include "XgKeyboardEvent.h"
+//#include "XgKeyboardEvent.h"
 
 // External Declarations
 //----------------------
-extern XgKeyboardEvent keyboardEvent;
+//extern XgKeyboardEvent keyboardEvent;
 
 XgShader::XgShader(string pathName)
 {

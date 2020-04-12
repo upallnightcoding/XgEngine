@@ -31,20 +31,4 @@ void XgKeyboardEvent::setScrollPosition(double xoffset, double yoffset)
 {
 	this->pXoffset = xoffset;
 	this->pYoffset = yoffset;
-
-	/*
-	cout << "fov, yoffset: " << fov << ":" << yoffset << endl;
-
-	//if (fov >= 1.0f && fov <= 90.0f) {
-		fov -= yoffset;
-	//}	
-
-	if (fov <= 1.0f) {
-		fov = 1.0f;
-	}
-
-	if (fov >= 90.0f) {
-		fov = 90.0f;
-	}
-	*/
 }

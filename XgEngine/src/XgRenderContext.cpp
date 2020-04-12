@@ -6,6 +6,7 @@ XgRenderContext::XgRenderContext()
 {
 	pScreenSize = NULL;
 	pCameraTelemetry = NULL;
+	keyboardEvent = NULL;
 }
 
 

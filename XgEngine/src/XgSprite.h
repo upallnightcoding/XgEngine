@@ -2,7 +2,7 @@
 
 #include "Xg.h"
 #include "XgPoint.h"
-//#include "XgShader.h"
+#include "XgShader.h"
 #include "XgBehavior.h"
 
 class XgSprite
@@ -12,7 +12,8 @@ public:
 	virtual ~XgSprite();
 
 public:
-	void draw();
+	void draw(XgShader *shader);
+	void create(bool updateTransform);
 	void create();
 	void add(XgAction *action);
 	void update(float deltaTime);
@@ -23,7 +24,7 @@ private:
 	void cleanUp();
 
 private:
-	//XgShader *shader;
+	bool updateTransform;
 
 	XgTransform transform;
 

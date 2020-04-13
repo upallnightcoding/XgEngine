@@ -153,9 +153,6 @@
     <ClCompile Include="src\XgTransform.cpp">
       <Filter>xg\object</Filter>
     </ClCompile>
-    <ClCompile Include="src\XgRenderContext.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\XgCameraTelemetry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -200,6 +197,12 @@
     </ClCompile>
     <ClCompile Include="src\XgEntity.cpp">
       <Filter>xg2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgRenderContext.cpp">
+      <Filter>xg\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgEventKeyboard.cpp">
+      <Filter>xg\framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -314,9 +317,6 @@
     <ClInclude Include="src\XgTransform.h">
       <Filter>xg\object</Filter>
     </ClInclude>
-    <ClInclude Include="src\XgRenderContext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\XgCameraTelemetry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -361,6 +361,12 @@
     </ClInclude>
     <ClInclude Include="src\XgEntity.h">
       <Filter>xg2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgRenderContext.h">
+      <Filter>xg\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgEventKeyboard.h">
+      <Filter>xg\framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

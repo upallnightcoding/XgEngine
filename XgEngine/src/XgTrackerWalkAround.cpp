@@ -2,10 +2,6 @@
 
 #include "XgKeyboardEvent.h"
 
-// External Declarations
-//----------------------
-extern XgKeyboardEvent keyboardEvent;
-
 XgTrackerWalkAround::XgTrackerWalkAround(float cameraSpeed)
 {
 	this->cameraSpeed = cameraSpeed;
@@ -54,12 +50,12 @@ updateCameraZoom()
 *****************************************************************************/
 void XgTrackerWalkAround::updateCameraZoom(XgRenderContext *context)
 {
-	double xOffSet = keyboardEvent.xOffset();
-	double yOffSet = keyboardEvent.yOffSet();
+	double xOffSet = XgKeyboardEvent::getInstance()->xOffset();
+	double yOffSet = XgKeyboardEvent::getInstance()->yOffSet();
 
-	context->screenSize()->updateFov(-yOffSet);
+	context->screenSize()->updateFov((float) -yOffSet);
 
-	keyboardEvent.zeroOffSet();
+	XgKeyboardEvent::getInstance()->zeroOffSet();
 }
 
 /*****************************************************************************
@@ -67,8 +63,8 @@ update() -
 *****************************************************************************/
 void XgTrackerWalkAround::updateCameraPositionWithMouse()
 {
-	double xpos = keyboardEvent.mouseXpos();
-	double ypos = keyboardEvent.mouseYpos();
+	double xpos = XgKeyboardEvent::getInstance()->mouseXpos();
+	double ypos = XgKeyboardEvent::getInstance()->mouseYpos();
 
 	if (firstMouse)
 	{

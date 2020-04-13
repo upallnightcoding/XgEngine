@@ -5,6 +5,10 @@
 
 #include "XgPixel.h"
 #include "XgActionMove.h"
+#include "XgEventKeyboard.h"
+#include "XgEventGoto.h"
+#include "XgActionNegDirection.h"
+#include "XgActionSpin.h"
 
 int xxmain() 
 {
@@ -31,9 +35,21 @@ int xxmain()
 
 int main()
 {
-	XgPixel pixel(800, 600);
+	string MOVE_STATE = "MOVE";
+	string TURN_STATE = "TURN";
 
-	XgPaper *paper = new XgPaper();
+	XgState *moveState = new XgState(MOVE_STATE);
+	moveState->add(new XgEventKeyboard(TURN_STATE, 'T'));
+	moveState->add(new XgActionMove(0.001, 0.0));
+
+	XgState *turnState = new XgState(TURN_STATE);
+	turnState->add(new XgEventGoto(MOVE_STATE));
+	turnState->add(new XgActionNegDirection());
+	turnState->add(new XgActionSpin(0.0, 180.0, 0.0));
+
+	XgFramework *framework = new XgFramework();
+	framework->add(moveState);
+	framework->add(turnState);
 
 	XgFlipBook *attackFlipBook = new XgFlipBook();
 	attackFlipBook->add(new XgSprite("Attack__000.png"));
@@ -47,15 +63,15 @@ int main()
 	attackFlipBook->add(new XgSprite("Attack__008.png"));
 	attackFlipBook->add(new XgSprite("Attack__009.png"));
 
-	attackFlipBook->add(new XgActionMove(0.01, 0.0, 0.0));
-
 	XgEntity *entity = new XgEntity();
+	entity->add(framework);
 	entity->add(attackFlipBook);
 
+	XgPaper *paper = new XgPaper();
 	paper->add(entity);
 
+	XgPixel pixel(800, 600);
 	pixel.add(paper);
-
 	pixel.startAnimation();
 
 	cin.get();

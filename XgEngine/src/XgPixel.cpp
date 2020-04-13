@@ -1,8 +1,5 @@
 #include "XgPixel.h"
 
-extern XgKeyboardEvent keyboardEvent;
-
-
 XgPixel::XgPixel(int screenWidth, int screenHeight)
 	: XgWindow(screenWidth, screenHeight)
 {
@@ -36,8 +33,6 @@ void XgPixel::initRender(GLFWwindow* window)
 	shader->uniform("u_Projection", screenSize->getPerspective());
 
 	renderContext = new XgRenderContext();
-
-	renderContext->setKeyboardEvent(&keyboardEvent);
 }
 
 /*****************************************************************************

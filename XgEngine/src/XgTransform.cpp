@@ -87,9 +87,9 @@ turn() -
 
 void XgTransform::turn(float x, float y, float z)
 {
-	rotateObj.x += x;
-	rotateObj.y += y;
-	rotateObj.z += z;
+	rotateObj.x += glm::radians(x);
+	rotateObj.y += glm::radians(y);
+	rotateObj.z += glm::radians(z);
 }
 
 /******************************************************************************

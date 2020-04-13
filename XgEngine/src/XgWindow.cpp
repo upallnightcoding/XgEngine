@@ -6,8 +6,6 @@
 
 using namespace std;
 
-XgKeyboardEvent keyboardEvent;
-
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
 void processInputCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -17,7 +15,8 @@ void processInputCallback(GLFWwindow* window, int key, int scancode, int action,
 
 	cout << "Input: " << key << ":" << scancode << ":" << action << ":" << mods << endl;
 
-	keyboardEvent.setKey(key, scancode, action, mods);
+	XgKeyboardEvent::getInstance()->setKey(key, scancode, action, mods);
+
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
@@ -33,7 +32,7 @@ mouseCallback()
 *****************************************************************************/
 void mouseCallback(GLFWwindow* window, double xpos, double ypos) 
 {
-	keyboardEvent.setMousePosition(xpos, ypos);
+	XgKeyboardEvent::getInstance()->setMousePosition(xpos, ypos);
 }
 
 /*****************************************************************************
@@ -41,7 +40,7 @@ scrollCallback()
 *****************************************************************************/
 void scrollCallback(GLFWwindow* window, double xOffset, double yOffset)
 {
-	keyboardEvent.setScrollPosition(xOffset, yOffset);
+	XgKeyboardEvent::getInstance()->setScrollPosition(xOffset, yOffset);
 }
 
 XgWindow::XgWindow(int screenWidth, int screenHeight)

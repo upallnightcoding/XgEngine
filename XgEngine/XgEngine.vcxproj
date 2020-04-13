@@ -186,6 +186,7 @@
     <ClInclude Include="src\XgPaper.h" />
     <ClInclude Include="src\XgFlipBook.h" />
     <ClInclude Include="src\XgEntity.h" />
+    <ClInclude Include="src\XgEventKeyboard.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\XgEngine.cpp" />
@@ -237,6 +238,7 @@
     <ClCompile Include="src\XgPaper.cpp" />
     <ClCompile Include="src\XgFlipBook.cpp" />
     <ClCompile Include="src\XgEntity.cpp" />
+    <ClCompile Include="src\XgEventKeyboard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

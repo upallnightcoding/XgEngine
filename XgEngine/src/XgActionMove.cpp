@@ -26,5 +26,7 @@ update() -
 *****************************************************************************/
 void XgActionMove::update(float deltaTime, XgTransform &transform)
 {
-	transform.move(dx * deltaTime, dy * deltaTime, dz * deltaTime);
+	//transform.move(dx * deltaTime, dy * deltaTime, dz * deltaTime);
+
+	transform.move(0.01, deltaTime);
 }

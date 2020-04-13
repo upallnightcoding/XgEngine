@@ -7,10 +7,20 @@ classs XgKeyboardEvent
 class XgKeyboardEvent
 {
 public:
-	XgKeyboardEvent();
-	virtual ~XgKeyboardEvent();
+	static XgKeyboardEvent *instance;
+
+	// Private constructor
+	XgKeyboardEvent()
+	{
+		pMouseXpos = pMouseYpos = 0.0;
+		pXoffset = pYoffset = 0.0;
+
+		key = scancode = action = mods = 0;
+	}
 
 public:
+	static XgKeyboardEvent *getInstance();
+
 	void setMousePosition(double xpos, double ypos);
 	void setScrollPosition(double xoffset, double yoffset);
 
@@ -23,6 +33,8 @@ public:
 	double yOffSet();
 
 	void setKey(int key, int scancode, int action, int mods);
+	void getKey(int &key, int &scancode, int &action, int &mods);
+	bool isKeyPressed(int targetKey);
 
 private:
 	double pMouseXpos;
@@ -36,42 +48,3 @@ private:
 	int mods;
 };
 
-inline void XgKeyboardEvent::setKey(int key, int scancode, int action, int mods)
-{
-	this->key = key;
-	this->scancode = scancode;
-	this->action = action;
-	this->mods = mods;
-}
-
-/*****************************************************************************
-getXpos()
-*****************************************************************************/
-inline double XgKeyboardEvent::mouseXpos()
-{
-	return(pMouseXpos);
-}
-
-/*****************************************************************************
-getYpos()
-*****************************************************************************/
-inline double XgKeyboardEvent::mouseYpos()
-{
-	return(pMouseYpos);
-}
-
-inline double XgKeyboardEvent::xOffset()
-{
-	return(pXoffset);
-}
-
-inline double XgKeyboardEvent::yOffSet()
-{
-	return(pYoffset);
-}
-
-inline void XgKeyboardEvent::zeroOffSet()
-{
-	pXoffset = 0.0;
-	pYoffset = 0.0;
-}

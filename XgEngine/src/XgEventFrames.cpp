@@ -2,7 +2,8 @@
 
 
 
-XgEventFrames::XgEventFrames(string nextState, int tickCount) : XgEvent(nextState)
+XgEventFrames::XgEventFrames(string nextState, int tickCount) 
+	: XgEvent(nextState)
 {
 	this->tickCount = tickCount;
 	this->ticks = 0;
